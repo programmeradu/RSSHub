@@ -1,0 +1,4 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import"./render-CxhTJIsl.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import{ProcessItems as t,defaultLanguage as n,defaultMode as r,rootUrl as i}from"./utils-BezkqSlU.js";const a={path:[`/videos/newrelease/:language?/:mode?`,`/newrelease/:language?/:mode?`],name:`Unknown`,maintainers:[],handler:o,description:`| videos with comments (by date) | everything (by date) |
+| ------------------------------ | -------------------- |
+| 1                              | 2                    |`};async function o(a){let o=a.req.param(`mode`)??r,s=a.req.param(`language`)??n,c=`${i}/${s}/vl_newrelease.php?list&mode=${o}`;return await t(s,c,e.tryGet)}export{a as route};
+//# sourceMappingURL=newrelease-5J6OUp_s.js.map

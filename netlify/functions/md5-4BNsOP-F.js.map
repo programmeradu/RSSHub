@@ -1,0 +1,1 @@
+{"version":3,"file":"md5-4BNsOP-F.js","names":[],"sources":["../../lib/utils/md5.ts"],"sourcesContent":["import crypto from 'node:crypto';\r\n\r\nexport default function md5(date: string) {\r\n    return crypto.createHash('md5').update(date).digest('hex');\r\n}\r\n"],"mappings":"2BAEA,SAAwB,EAAI,EAAc,CACtC,OAAO,EAAO,WAAW,OAAO,OAAO,GAAM,OAAO"}

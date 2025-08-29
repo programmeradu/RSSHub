@@ -1,0 +1,1 @@
+{"version":3,"file":"const-DE0Eu2x8.js","names":[],"sources":["../../lib/routes/shopify/apps/const.ts"],"sourcesContent":["export const baseURL = 'https://apps.shopify.com';\r\n"],"mappings":"AAAA,MAAa,EAAU"}

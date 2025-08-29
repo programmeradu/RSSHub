@@ -1,0 +1,2 @@
+import{got_default as e}from"./got-CdvI2yKX.js";import{load as t}from"cheerio";import{Cookie as n,CookieJar as r}from"tough-cookie";const i=new r,a=n.fromJSON({key:`playno1`,value:`playno1Cookie`,domain:`playno1.com`,path:`/`});(async()=>{await i.setCookie(a,`http://www.playno1.com/`)})();const o=(n,r)=>Promise.all(n.map(n=>r.tryGet(n.link,async()=>{let r=await e(n.link,{cookieJar:i}),a=t(r.data);return n.description=a(`#article_content`).html(),n})));export{i as cookieJar,o as processArticle};
+//# sourceMappingURL=utils-GLk1q66y.js.map

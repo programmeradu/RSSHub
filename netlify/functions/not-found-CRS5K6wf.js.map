@@ -1,0 +1,1 @@
+{"version":3,"file":"not-found-CRS5K6wf.js","names":[],"sources":["../../lib/errors/types/not-found.ts"],"sourcesContent":["class NotFoundError extends Error {\r\n    name = 'NotFoundError';\r\n}\r\n\r\nexport default NotFoundError;\r\n"],"mappings":"AAAA,IAAM,EAAN,cAA4B,KAAM,CAC9B,KAAO,iBAGX,EAAe"}

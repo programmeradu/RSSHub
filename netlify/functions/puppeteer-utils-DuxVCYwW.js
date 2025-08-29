@@ -1,0 +1,2 @@
+const e=(e,t)=>{if(typeof t==`string`){let n=`.`+t;e=e.filter(({domain:e})=>e===t||e.endsWith(n))}else t&&t.test!==void 0&&(e=e.filter(({domain:e})=>t.test(e)));return e.map(({name:e,value:t})=>e?`${e}=${t}`:t).join(`; `)},t=(e,t)=>e.split(`; `).map(e=>{let[n,r]=e.split(`=`);return r===void 0?{name:``,value:n,domain:t}:{name:n,value:r,domain:t}}),n=async(e,n,r)=>{let i=t(n,r);await e.setCookie(...i)},r=async(t,n)=>{let r=await t.cookies();return e(r,n)};export{r as getCookies,n as setCookies};
+//# sourceMappingURL=puppeteer-utils-DuxVCYwW.js.map

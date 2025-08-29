@@ -1,0 +1,4 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./md5-4BNsOP-F.js";import"./ofetch-Bzt0BXUH.js";import{HOST as e,TITLE as t,fetchBrandInfo as n}from"./service-DmqdozlI.js";const r={path:`/brand/:id`,categories:[`shopping`],example:`/showstart/brand/34707`,parameters:{id:`厂牌 ID`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`www.showstart.com/host/:id`]}],name:`按厂牌 - 演出更新`,maintainers:[`lchtao26`],handler:i,description:`::: tip
+厂牌 ID 查询: \`/showstart/search/brand/:keyword\`，如: [https://rsshub.app/showstart/search/brand/声场](https://rsshub.app/showstart/search/brand/声场)
+:::`};async function i(r){let i=r.req.param(`id`),a=await n({brandId:i});return{title:`${t} - ${a.name}`,description:a.content,link:`${e}/host/${a.id}`,item:a.activityList}}export{r as route};
+//# sourceMappingURL=brand-B22yAClA.js.map

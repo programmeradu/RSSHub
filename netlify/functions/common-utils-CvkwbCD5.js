@@ -1,0 +1,2 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";import t from"title";const n=e=>t(e),r=/\s+/,i=/\s+/g,a=e=>e&&r.test(e)?e.replaceAll(i,` `).trim():e,o=t=>t&&(typeof t!=`object`&&(t=e(t)),t.toISOString()),s=e=>{let t=e.req.path.replace(/\/[^/]*/,``)||`/`;return t};export{a as collapseWhitespace,o as convertDateToISO8601,s as getSubPath,n as toTitleCase};
+//# sourceMappingURL=common-utils-CvkwbCD5.js.map

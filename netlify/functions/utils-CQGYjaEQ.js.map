@@ -1,0 +1,1 @@
+{"version":3,"file":"utils-CQGYjaEQ.js","names":[],"sources":["../../lib/routes/odaily/utils.ts"],"sourcesContent":["const rootUrl = 'https://www.odaily.news';\r\n\r\nexport { rootUrl };\r\n"],"mappings":"AAAA,MAAM,EAAU"}

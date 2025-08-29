@@ -1,0 +1,2 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";import{ofetch_default as t}from"./ofetch-Bzt0BXUH.js";import*as n from"cheerio";const r=`http://www.qstheory.cn`,i=async r=>{let i=await t(r.link),a=n.load(i);return a(`.fs-text, .fs-pinglun, .hidden-xs`).remove(),r.author=a(`.appellation`).text(),r.description=a(`.highlight, .text`).html()||a(`.content`).html(),r.pubDate=e(a(`.puttime_mobi, .pubtime, .headtitle span`).text().trim().replace(`发表于`,``).replaceAll(/(年|月)/g,`-`).replace(`日`,``)),r};export{r as baseUrl,i as getItem};
+//# sourceMappingURL=utils-Cv_MFm_Q.js.map

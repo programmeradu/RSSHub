@@ -1,0 +1,2 @@
+import{load as e}from"cheerio";function t(t,n){let r=e(n);return r(`div.wp_pdf_player`).each(function(){let e=r(this),n=e.attr(`pdfsrc`)||``,i=new URL(n,t).href,a=`<p><a href=${i} target="_blank">点击下载 PDF 文件资源</a></p>`;e.replaceWith(a)}),r.html()}export{t as processEmbedPDF};
+//# sourceMappingURL=embed-resource-BeMmfaQS.js.map

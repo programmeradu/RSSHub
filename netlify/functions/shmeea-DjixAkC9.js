@@ -1,0 +1,8 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as n}from"./got-CdvI2yKX.js";import{timezone as r}from"./timezone-BrNu6iXe.js";import{load as i}from"cheerio";const a={path:`/:id?`,categories:[`study`],example:`/shmeea/08000`,parameters:{id:`页面 ID，可在 URL 中找到，默认为消息速递`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`消息`,maintainers:[`jialinghui`,`Misaka13514`],handler:o,description:`::: tip
+  例如：消息速递的网址为 \`https://www.shmeea.edu.cn/page/08000/index.html\`，则页面 ID 为 \`08000\`。
+:::
+
+::: warning
+  暂不支持大类分类和[院内动态](https://www.shmeea.edu.cn/page/19000/index.html)
+:::`};async function o(a){let o=a.req.param(`id`)??`08000`,s=`https://www.shmeea.edu.cn`,c=`${s}/page/${o}/index.html`,l=await n(c),u=i(l.data),d=`上海市教育考试院-${u(`#main .pageh4-tit`).text().trim()}`,f=u(`#main .pageList li`).toArray().map(e=>(e=u(e),{title:e.find(`a`).attr(`title`)||e.find(`a`).text(),link:new URL(e.find(`a`).attr(`href`),s).href,pubDate:t(e.find(`.listTime`).text().trim(),`YYYY-MM-DD`)})),p=await Promise.all(f.map(a=>e.tryGet(a.link,async()=>{if(!a.link.endsWith(`.html`)||new URL(a.link).hostname!==new URL(s).hostname)return a;let e=await n(a.link),o=i(e.data),c=o(`#ivs_content`).html(),l=o(`#ivs_title .PBtime`).text().trim();return a.description=c,a.pubDate=l?r(t(l,`YYYY-MM-DD HH:mm:ss`),8):a.pubDate,a})));return{title:d,link:c,item:p}}export{a as route};
+//# sourceMappingURL=shmeea-DjixAkC9.js.map

@@ -1,0 +1,2 @@
+import{got_default as e}from"./got-CdvI2yKX.js";import{load as t}from"cheerio";async function n(n){let r=await e({method:`get`,url:n.link}),i=t(r.data);i(`div.SubscriptionInner`).remove(),i(`.gmailNews`).remove();let a=i(`.fullPic`).html();return n.description=(a===null?``:a)+i(`.paragraph`).eq(0).html(),n.category=[...i(`meta[property='article:tag']`).toArray().map(e=>e.attribs.content),i(`.active > a`).text()],n}export{n as getFullText};
+//# sourceMappingURL=utils-DwUiNVlo.js.map

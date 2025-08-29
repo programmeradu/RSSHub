@@ -1,0 +1,8 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./render-CxhTJIsl.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as e}from"./got-CdvI2yKX.js";import{invalid_parameter_default as t}from"./invalid-parameter-CUJdROXf.js";import{isValidHost as n}from"./valid-host-DEPw8oAS.js";import{headers as r,parseItems as i}from"./utils-ChWpcDRH.js";import{load as a}from"cheerio";const o={path:`/category_url/:url?/:language?`,categories:[`multimedia`],example:`/pornhub/category_url/video%3Fc%3D15%26o%3Dmv%26t%3Dw%26cc%3Djp`,parameters:{language:`language, see below`,url:"relative path after `pornhub.com/`, need to be URL encoded"},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!0,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`Video List`,maintainers:[`I2IMk`,`queensferryme`],handler:s,description:`**\`language\`**
+
+  Refer to [Pornhub F.A.Qs](https://help.pornhub.com/hc/en-us/articles/360044327034-How-do-I-change-the-language-), English by default. For example:
+
+  -   \`cn\` (Chinese), for Pornhub in China [https://cn.pornhub.com](https://cn.pornhub.com)；
+
+  -   \`jp\` (Japanese), for Pornhub in Japan [https://jp.pornhub.com](https://jp.pornhub.com) etc.`};async function s(o){let{language:s=`www`,url:c=`video`}=o.req.param(),l=`https://${s}.pornhub.com/${c}`;if(!n(s))throw new t(`Invalid language`);let{data:u}=await e(l,{headers:r}),d=a(u),f=d(`#videoCategory .videoBox`).toArray().map(e=>i(d(e)));return{title:d(`title`).first().text(),link:l,language:d(`html`).attr(`lang`),item:f}}export{o as route};
+//# sourceMappingURL=category-url-Cw6jInL_.js.map

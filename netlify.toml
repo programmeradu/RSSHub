@@ -1,0 +1,114 @@
+[build]
+  command = "pnpm build:netlify"
+  functions = "netlify/functions"
+  publish = "netlify/static"
+
+[functions]
+  directory = "netlify/functions"
+
+# Redirect all API routes to the main function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/netlify-server"
+  status = 200
+
+# Redirect all other routes to the main function
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/netlify-server"
+  status = 200
+
+# Function-specific configuration
+[functions.netlify-server]
+  # Netlify function timeout (30 seconds for free tier, up to 15 minutes for Pro)
+  timeout = 30
+  
+  # Memory allocation (1008 MB maximum)
+  memory = 1008
+  
+  # Environment variables for Netlify-specific settings
+  [functions.netlify-server.environment]
+    NODE_ENV = "production"
+    NETLIFY = "true"
+
+# Headers for static assets with CDN optimization
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
+    
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
+    
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
+
+[[headers]]
+  for = "/*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
+
+# RSS/Feed specific headers for better CDN caching
+[[headers]]
+  for = "/*/rss"
+  [headers.values]
+    Cache-Control = "public, max-age=300, s-maxage=300, stale-while-revalidate=600"
+    Vary = "Accept-Encoding, User-Agent"
+    Cache-Tag = "feeds"
+
+[[headers]]
+  for = "/*/atom"
+  [headers.values]
+    Cache-Control = "public, max-age=300, s-maxage=300, stale-while-revalidate=600"
+    Vary = "Accept-Encoding, User-Agent"
+    Cache-Tag = "feeds"
+
+[[headers]]
+  for = "/*/feed"
+  [headers.values]
+    Cache-Control = "public, max-age=300, s-maxage=300, stale-while-revalidate=600"
+    Vary = "Accept-Encoding, User-Agent"
+    Cache-Tag = "feeds"
+
+# API routes with shorter cache
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, s-maxage=300, stale-while-revalidate=600"
+    Vary = "Accept-Encoding, User-Agent"
+    Cache-Tag = "api"
+
+# Hot/trending content with shorter cache
+[[headers]]
+  for = "/*/hot"
+  [headers.values]
+    Cache-Control = "public, max-age=600, s-maxage=600, stale-while-revalidate=1200"
+    Vary = "Accept-Encoding, User-Agent"
+    Cache-Tag = "trending"
+
+[[headers]]
+  for = "/*/trending"
+  [headers.values]
+    Cache-Control = "public, max-age=600, s-maxage=600, stale-while-revalidate=1200"
+    Vary = "Accept-Encoding, User-Agent"
+    Cache-Tag = "trending"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Enable compression
+    Accept-Encoding = "gzip, deflate, br"

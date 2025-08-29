@@ -1,0 +1,1 @@
+{"version":3,"file":"utils-CHdzxIbb.js","names":[],"sources":["../../lib/routes/agefans/utils.ts"],"sourcesContent":["const rootUrl = 'https://www.agemys.org';\r\n\r\nexport { rootUrl };\r\n"],"mappings":"AAAA,MAAM,EAAU"}

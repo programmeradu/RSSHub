@@ -1,0 +1,9 @@
+import{__dirname as e,init_esm_shims as t}from"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{art as n}from"./render-CxhTJIsl.js";import{parseDate as r}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as i}from"./got-CdvI2yKX.js";import a from"node:path";t();const o={path:`/offer/:year?/:major?/:school?`,categories:[`bbs`],example:`/1point3acres/offer/12/null/CMU`,parameters:{year:`录取年份  id，空为null`,major:`录取专业 id，空为null`,school:`录取学校 id，空为null`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`offer.1point3acres.com/`],target:`/offer`}],name:`录取结果`,maintainers:[`EthanWng97`],handler:s,url:`offer.1point3acres.com/`,description:`::: tip 三个 id 获取方式
+  1.  打开 [https://offer.1point3acres.com](https://offer.1point3acres.com)
+  2.  打开控制台
+  3.  切换到 Network 面板
+  4.  点击 搜索 按钮
+  5.  点击 results?ps=15&pg=1 POST 请求
+  6.  找到 Request Payload 请求参数，例如 \`filters: {planyr: "13", planmajor: "1", outname_w: "ACADIAU"}\` ，则三个 id 分别为: 13,1,ACADIAU
+:::`};async function s(t){let{year:o=`null`,major:s=`null`,school:c=`null`}=t.req.param(),l=await i.post(`https://api.1point3acres.com/offer/results`,{searchParams:{ps:15,pg:1},json:{filters:{planyr:o===`null`?void 0:o,planmajor:s===`null`?void 0:s,outname_w:c===`null`?void 0:c}}}),u=l.data.results;return{title:`录取结果 - 一亩三分地`,link:`https://offer.1point3acres.com`,item:u.map(t=>({title:`${t.planyr}年${t.planmajor}@${t.outname_w}：${t.result} - 一亩三分地`,description:n(a.join(e,`templates/offer-ef9bcc05.art`),{item:t}),pubDate:r(t.dateline,`X`),link:`https://offer.1point3acres.com`,guid:`1point3acres:offer:${o}:${s}:${c}:${t.id}`}))}}export{o as route};
+//# sourceMappingURL=offer-vR5r9NdI.js.map

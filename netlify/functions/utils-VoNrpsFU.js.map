@@ -1,0 +1,1 @@
+{"version":3,"file":"utils-VoNrpsFU.js","names":[],"sources":["../../lib/routes/x-mol/utils.ts"],"sourcesContent":["export default {\r\n    host: 'https://www.x-mol.com',\r\n};\r\n"],"mappings":"AAAA,IAAA,EAAe,CACX,KAAM"}

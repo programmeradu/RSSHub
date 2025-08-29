@@ -1,0 +1,1 @@
+{"version":3,"file":"config-not-found-BVqhRP9D.js","names":[],"sources":["../../lib/errors/types/config-not-found.ts"],"sourcesContent":["class ConfigNotFoundError extends Error {\r\n    name = 'ConfigNotFoundError';\r\n}\r\n\r\nexport default ConfigNotFoundError;\r\n"],"mappings":"AAAA,IAAM,EAAN,cAAkC,KAAM,CACpC,KAAO,uBAGX,EAAe"}

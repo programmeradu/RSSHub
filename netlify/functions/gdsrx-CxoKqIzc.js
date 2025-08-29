@@ -1,0 +1,10 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as n}from"./got-CdvI2yKX.js";import{load as r}from"cheerio";const i={path:`/:id?`,categories:[`other`],example:`/gdsrx`,parameters:{id:`栏目 id，可在对应栏目页 URL 中找到，见下表，默认为法规文库`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`栏目`,maintainers:[],handler:a,description:`| 栏目名称          | 栏目 id |
+| ----------------- | ------- |
+| 法规文库          | 10      |
+| 法规资讯          | 12      |
+| 专家供稿          | 13      |
+| 协会动态 会员动态 | 20      |
+| 协会动态          | 37      |
+| 协会通知公告      | 38      |
+| 会员动态          | 39      |`};async function a(i){let{id:a=`10`}=i.req.param(),o=i.req.query(`limit`)?Number.parseInt(i.req.query(`limit`),10):15,s=`http://www.gdsrx.org.cn`,c=new URL(`portal/list/index/id/${a}.html`,s).href,{data:l}=await n(c),u=r(l),d=u(`a.xn-item, a.t-item`).slice(0,o).toArray().map(e=>(e=u(e),{title:e.find(`div.xn-d, div.t-e`).text(),link:new URL(e.prop(`href`),s).href,pubDate:t(e.find(`div.xn-time, div.t-f`).text())}));d=await Promise.all(d.map(i=>e.tryGet(i.link,async()=>{let{data:e}=await n(i.link),a=r(e),o=a(`a.nav-a`).slice(1).toArray().map(e=>a(e).text());return i.title=o.pop()||a(`div.u-c`).text(),i.description=a(`div.u-f`).html(),i.author=a(`.author`).text(),i.category=o,i.pubDate=t(a(`div.u-d`).text()),i})));let f=u(`title`).text(),p=u(`a.h-g img`).prop(`src`),m=new URL(`favicon.ico`,s).href,h=u(`a.nav-a`).toArray().map(e=>u(e).text()).pop();return{item:d,title:`${f} - ${h}`,link:c,description:u(`meta[name="description"]`).prop(`content`),language:`zh`,image:p,icon:m,logo:m,subtitle:h,author:f}}export{i as route};
+//# sourceMappingURL=gdsrx-CxoKqIzc.js.map

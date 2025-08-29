@@ -1,0 +1,2 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";import{load as t}from"cheerio";const n=`4KUP`,r=`https://4kup.net/`,i=e=>{e(`a.thumb-photo`).each((t,n)=>{let r=e(n),i=r.attr(`href`);i&&r.find(`img`).attr(`src`,i)}),e(`.caption`).remove()};function a(n){let r=t(n.content.rendered);return i(r),{title:n.title.rendered,description:r.html()??``,pubDate:e(n.date_gmt),link:n.link}}var o=a;export{n as SUB_NAME_PREFIX,r as SUB_URL,o as article_default};
+//# sourceMappingURL=article-BJtJSzkh.js.map

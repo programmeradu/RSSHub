@@ -1,0 +1,8 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import{ofetch_default as n}from"./ofetch-Bzt0BXUH.js";import{load as r}from"cheerio";const i={path:`/ygafz/:type?`,categories:[`university`],example:`/sysu/ygafz`,parameters:{type:"分类，见下表，默认为 `notice`"},features:{requireConfig:!1,requirePuppeteer:!0,antiCrawler:!0,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`ygafz.sysu.edu.cn/:type?`]}],name:`粤港澳发展研究院`,description:`| 人才招聘   | 人才培养      | 新闻动态 | 通知公告 | 专家观点 |
+| ---------- | ------------- | -------- | -------- | -------- |
+| jobopening | personnelplan | news     | notice   | opinion  |
+
+| 研究成果 | 研究论文 | 学术著作 | 形势政策 |
+| -------- | -------- | -------- | -------- |
+| results  | papers   | writings | policy   |`,maintainers:[`TonyRL`],handler:a};async function a(i){let{type:a=`notice`}=i.req.param(),o=`https://ygafz.sysu.edu.cn`,s=`${o}/${a}`,c=await n(s),l=r(c),u=l(`.list-content a`).toArray().map(e=>(e=l(e),{title:e.find(`p`).text(),link:`${o}${e.attr(`href`)}`,pubDate:t(e.find(`.date`).text())})),d=await Promise.all(u.map(t=>e.tryGet(t.link,async()=>{let e=await n(t.link),i=r(e);return t.author=i(`.article-submit`).text().match(/发布人：(.*)/)[1],t.description=i(`div[data-block-plugin-id="entity_field:node:body"]`).html()+(i(`div[data-block-plugin-id="entity_field:node:attachments"]`).html()??``),t})));return{title:l(`title`).text(),link:s,item:d}}export{i as route};
+//# sourceMappingURL=ygafz-BRPDlucy.js.map

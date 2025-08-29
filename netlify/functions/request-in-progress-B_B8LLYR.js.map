@@ -1,0 +1,1 @@
+{"version":3,"file":"request-in-progress-B_B8LLYR.js","names":[],"sources":["../../lib/errors/types/request-in-progress.ts"],"sourcesContent":["class RequestInProgressError extends Error {\r\n    name = 'RequestInProgressError';\r\n}\r\n\r\nexport default RequestInProgressError;\r\n"],"mappings":"AAAA,IAAM,EAAN,cAAqC,KAAM,CACvC,KAAO,0BAGX,EAAe"}

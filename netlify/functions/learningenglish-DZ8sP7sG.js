@@ -1,0 +1,8 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import{ofetch_default as n}from"./ofetch-Bzt0BXUH.js";import{load as r}from"cheerio";const i={name:`Learning English`,maintainers:[`Blank0120`],categories:[`study`],handler:a,path:`/learningenglish/:channel?`,example:`/bbc/learningenglish/take-away-english`,parameters:{channel:"channel, default to `take-away-english`"},description:`| 随身英语 | 地道英语 | 媒体英语 | 英语大破解 | 一分钟英语 |
+| -------- | -------- | -------- | -------- | -------- |
+| take-away-english | authentic-real-english | media-english | lingohack | english-in-a-minute |
+
+| 短语动词 | 今日短语 | 你问我答 | 白领英语 | 亲子英语故事 |
+| -------- | -------- | -------- | -------- | -------- |
+| phrasal-verbs | todays-phrase | q-and-a | english-at-work | storytellers |`};async function a(i){let{channel:a=`take-away-english`}=i.req.param(),o=`https://www.bbc.co.uk`,s=`${o}/learningenglish/chinese/features/${a}`,c=await n(s,{parseResponse:e=>e}),l=r(c),u={title:l(`[data-widget-index=4]`).find(`h2`).text(),link:`${o}${l(`[data-widget-index=4]`).find(`h2 a`).attr(`href`)}`,pubDate:t(l(`[data-widget-index=4]`).find(`.details h3`).text())},d=l(`.threecol li`).toArray().slice(0,10).map(e=>{let n=r(e);return{title:n(`h2`).text(),link:`${o}${n(`h2 a`).attr(`href`)}`,pubDate:t(n(`.details h3`).text())}}),f=await Promise.all([u,...d].map(t=>e.tryGet(t.link,async()=>{let e=await n(t.link,{parseResponse:e=>e}),i=r(e);return t.description=i(`.widget-richtext`).html(),t})));return{title:`Learningenglish-${a}-BBC`,link:s,item:f}}export{i as route};
+//# sourceMappingURL=learningenglish-DZ8sP7sG.js.map

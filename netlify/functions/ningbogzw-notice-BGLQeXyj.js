@@ -1,0 +1,6 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{parseDate as e}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as t}from"./got-CdvI2yKX.js";import{load as n}from"cheerio";const r={path:`/zj/ningbogzw-notice/:colId?`,categories:[`government`],example:`/gov/zj/ningbogzw-notice/1229116730`,parameters:{colId:`公告分类id、详细信息点击源网站http://gzw.ningbo.gov.cn/请求中寻找`},radar:[{source:[`gzw.ningbo.gov.cn/col/col1229116730/index.html`],target:`/zj/ningbogzw-notice/:colId?`}],name:`宁波市国资委-公告`,url:`gzw.ningbo.gov.cn`,maintainers:[`HaoyuLee`],description:`
+| 公告类别         | colId |
+| ------------ | -- |
+| 首页-市属国企招聘信息-招聘公告     | 1229116730  |
+    `,async handler(r){let{colId:i=`1229116730`}=r.req.param(),a=`http://gzw.ningbo.gov.cn/col/col${i}/index.html`,{data:o}=await t(a),s=n(o)(`.List-topic .text-tag`).text().trim(),c=/<li><a href=".*" target="_blank">.*<\/li>/g,l=o.match(c).map(t=>{let r=n(t),i=r(`a`);return{title:`宁波市国资委-${s}:${i.text()}`,link:`http://gzw.ningbo.gov.cn${i.attr(`href`)}`,pubDate:e(r(`p`).text().replaceAll(/\[|]/g,``)),author:`宁波市国资委`,description:i.text()}});return{title:`宁波市国资委`,link:a,item:l}}};export{r as route};
+//# sourceMappingURL=ningbogzw-notice-BGLQeXyj.js.map

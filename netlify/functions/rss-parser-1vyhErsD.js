@@ -1,0 +1,2 @@
+import{config as e}from"./config-Dl8a1sIg.js";import t from"rss-parser";const n=new t({customFields:{item:[`magnet`]},headers:{"User-Agent":e.ua}});var r=n;export{r as rss_parser_default};
+//# sourceMappingURL=rss-parser-1vyhErsD.js.map

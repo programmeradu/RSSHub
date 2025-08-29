@@ -1,0 +1,2 @@
+import"./config-Dl8a1sIg.js";import{rss_parser_default as e}from"./rss-parser-1vyhErsD.js";const t={path:`/`,name:`Автомобільний сайт N1 в Україні`,categories:[`new-media`],maintainers:[`driversti`],example:`/autocentre`,handler:r},n=e=>({title:e.title,link:e.link,description:e.contentSnippet});async function r(){let t=await e.parseURL(`https://www.autocentre.ua/rss`);return{title:t.title,link:t.link,description:t.description,language:`uk`,item:await Promise.all(t.items.map(e=>n(e)))}}export{t as route};
+//# sourceMappingURL=autocentre-MMOrrbOU.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"invalid-parameter-CUJdROXf.js","names":[],"sources":["../../lib/errors/types/invalid-parameter.ts"],"sourcesContent":["class InvalidParameterError extends Error {\r\n    name = 'InvalidParameterError';\r\n}\r\n\r\nexport default InvalidParameterError;\r\n"],"mappings":"AAAA,IAAM,EAAN,cAAoC,KAAM,CACtC,KAAO,yBAGX,EAAe"}

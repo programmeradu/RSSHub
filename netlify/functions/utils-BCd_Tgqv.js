@@ -1,0 +1,2 @@
+function e(e,t,n,r){let i=new Set([`name`,`image`,`short_description`,`slug`,`price_${r}`,`discount_price_${r}`]),a=e.attribute,o={};for(let e of a){let t=e.name,n=e.value[0].value;i.has(t)&&(t===`price_${r}`?o.original_price=n:t===`discount_price_${r}`?o.price=n:o[t]=n)}return n[t]=o}export{e as generateRssData};
+//# sourceMappingURL=utils-BCd_Tgqv.js.map

@@ -1,0 +1,7 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./ofetch-Bzt0BXUH.js";import{got_default as e}from"./got-CdvI2yKX.js";const t={path:`/hot/:site?`,categories:[`new-media`],example:`/zyw/hot`,parameters:{site:`站点，见下表，默认为空，即全部`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`今日热榜`,maintainers:[`nczitzk`],handler:n,description:`::: tip
+  全部站点请见 [此处](https://hot.zyw.asia/#/list)
+:::
+
+| 哔哩哔哩 | 微博 | 知乎 | 36 氪 | 百度 | 少数派 | IT 之家 | 澎湃新闻 | 今日头条 | 百度贴吧 | 稀土掘金 | 腾讯新闻 |
+| -------- | ---- | ---- | ----- | ---- | ------ | ------- | -------- | -------- | -------- | -------- | -------- |`};async function n(t){let n=t.req.param(`site`)??``,r=`https://hot.zyw.asia`,i=await e({method:`get`,url:r}),a=`${r}${i.data.match(/crossorigin src="(\/assets\/index-\w+\.js)">/)[1]}`;i=await e({method:`get`,url:a});let o=i.data.match(/label:"(.*?)",value:"(.*?)",order/g).map(e=>{let t=e.match(/label:"(.*?)",value:"(.*?)"/);return{label:t[1],value:t[2]}}).filter(e=>n?e.label===n||e.value===n:!0),s=`${r}${n?`/#/list?type=${o[0].value}`:``}`,c=[];return await Promise.all(o.map(async t=>{let n=await e({method:`get`,url:`https://api-hot.zyw.asia/${t.value}`,headers:{referer:r}});for(let e of n.data.data)c.push({link:e.url,title:e.title,description:e.desc})})),{title:`今日热榜${n?` - ${o[0].label}`:``}`,link:s,item:c}}export{t as route};
+//# sourceMappingURL=hot-BiRk5RL2.js.map

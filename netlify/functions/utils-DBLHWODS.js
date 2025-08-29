@@ -1,0 +1,2 @@
+import{got_default as e}from"./got-CdvI2yKX.js";const t=`http://www.yxdown.com`,n=async()=>{let n=await e(t),r=/(?<=.cookie=").*(?=; path)/g,i=n.data.match(r)[0];return i};export{n as getCookie,t as rootUrl};
+//# sourceMappingURL=utils-DBLHWODS.js.map

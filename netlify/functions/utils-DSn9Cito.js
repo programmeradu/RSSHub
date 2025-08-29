@@ -1,0 +1,2 @@
+import{__dirname as e,init_esm_shims as t}from"./esm-shims-Dqvxr0BZ.js";import{art as n}from"./render-CxhTJIsl.js";import{parseRelativeDate as r}from"./parse-date-Bgabdhlb.js";import i from"node:path";t();const a=t=>n(i.join(e,`templates/description-5a5e1274.art`),t),o=e=>({title:e.find(`a > img`).attr(`alt`),link:e.find(`a`).attr(`href`),description:a({poster:e.find(`a > img`).data(`src`),previewVideo:e.find(`a > span`).data(`trailer`)}),pubDate:r(e.find(`.video-addtime`).text())});export{o as parseItems};
+//# sourceMappingURL=utils-DSn9Cito.js.map

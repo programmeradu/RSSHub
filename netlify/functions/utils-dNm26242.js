@@ -1,0 +1,2 @@
+import*as e from"cheerio";const t=`https://www.t66y.com`,n=e=>{let t=/.*\?http/g,n=/______/g;return e.replaceAll(t,`http`).replaceAll(n,`.`).replace(`&z`,``)},r=t=>{let r=e.load(t),i=r(`div.tpc_content`).eq(0);return i.find(`.t_like`).remove(),i.find(`img`).each((e,t)=>{let n=r(t),i=n.attr(`ess-data`);i&&n.attr(`src`,i),n.removeAttr(`ess-data`),n.removeAttr(`iyl-data`)}),i.find(`a`).each((e,t)=>{let i=r(t),a=i.attr(`href`);a?.includes(`redircdn`)&&i.attr(`href`,n(a))}),i.html()};export{t as baseUrl,r as parseContent};
+//# sourceMappingURL=utils-dNm26242.js.map

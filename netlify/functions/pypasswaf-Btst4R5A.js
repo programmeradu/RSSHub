@@ -1,0 +1,2 @@
+import{puppeteer_default as e}from"./puppeteer-f0D6AISB.js";import{getCookies as t}from"./puppeteer-utils-DuxVCYwW.js";async function n(n){let r=await e(),i=await r.newPage();await i.setRequestInterception(!0),i.on(`request`,e=>{e.resourceType()===`document`||e.resourceType()===`script`?e.continue():e.abort()}),await i.goto(n,{waitUntil:`networkidle0`});let a=await t(i);return await r.close(),a}export{n as getCookie};
+//# sourceMappingURL=pypasswaf-Btst4R5A.js.map

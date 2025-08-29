@@ -1,0 +1,2 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";import{got_default as t}from"./got-CdvI2yKX.js";import{load as n}from"cheerio";const r=`CosplayTele`,i=`https://cosplaytele.com/`;async function a(r){let i=await t(r),a=n(i.body),o=a(`h1.entry-title`).text().trim(),s=a(`.entry-content`).html()??``,c=e(a(`time`)[0].attribs.datetime);return{title:o,description:s,pubDate:c,link:r}}var o=a;export{r as SUB_NAME_PREFIX,i as SUB_URL,o as article_default};
+//# sourceMappingURL=article-10p677Zy.js.map

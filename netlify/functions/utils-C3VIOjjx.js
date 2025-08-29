@@ -1,0 +1,2 @@
+import{config as e}from"./config-Dl8a1sIg.js";const t=()=>({accept:`application/json, text/javascript, */*; q=0.01`,cookie:e.smzdm.cookie,"x-requested-with":`XMLHttpRequest`});export{t as getHeaders};
+//# sourceMappingURL=utils-C3VIOjjx.js.map

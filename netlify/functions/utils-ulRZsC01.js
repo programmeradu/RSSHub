@@ -1,0 +1,11 @@
+import{config as e}from"./config-Dl8a1sIg.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import{ofetch_default as n}from"./ofetch-Bzt0BXUH.js";import{timezone as r}from"./timezone-BrNu6iXe.js";import{JSDOM as i}from"jsdom";const a=`https://bbs.yamibo.com`;function o(e){return r(t(e),8)}async function s(t,r,a=0){let{auth:o,salt:c}=e.yamibo,l=new URLSearchParams;l.set(`mod`,`viewthread`),l.set(`tid`,t),r?.ordertype&&l.set(`ordertype`,r.ordertype),r?._dsign&&l.set(`_dsign`,r._dsign);let u=`https://bbs.yamibo.com/forum.php?${l.toString()}`,d={};o&&c&&(d.cookie=`EeqY_2132_saltkey=${c}; EeqY_2132_auth=${o}`);let f=await n(u,{headers:d});if(f.startsWith(`<script type="text/javascript">`)&&a<=3){let e=f.match(/<script type="text\/javascript">([\S\s]*?)<\/script>/)[1];e=e.replace(/= location;|=location;/,`=fakeLocation;`),e=e.replace(`location.replace`,`foo`),e=e.replace(`location.assign`,`foo`),e=e.replace(/location\[[^\]]*]\(/,`foo(`),e=e.replace(/location\[[^\]]*]=/,`window.locationValue=`),e=e.replace(`location.href=`,`window.locationValue=`),e=e.replace(`location=`,`window.locationValue=`);let n=new i(`<script>
+                function foo(value) { window.locationValue = value; };
+                fakeLocation = { href: '', replace: foo, assign: foo };
+                Object.defineProperty(fakeLocation, 'href', {
+                    set: function (value) {
+                        window.locationValue = value;
+                    }
+                });
+                ${e}
+            <\/script>`,{runScripts:`dangerously`}),o=n.window.locationValue;if(o){let e=new URLSearchParams(o),t=e.get(`_dsign`);t&&(r={...r,_dsign:t})}return await s(t,r,++a)}return{link:u,data:f}}function c(e,t){let n=e.find(`#postmessage_${t}`).parent();n.find(`img`).each((e,t)=>{let n=t.attribs.zoomfile??t.attribs.src;t.attribs.src=`${a}/${n}`});let r=n.html()??``,i=e.find(`.pattl img`).toArray();for(let e of i){let t=e.attribs.zoomfile??e.attribs.src;r+=`<img src="${a}/${t}" />`}return r}export{a as bbsOrigin,s as fetchThread,c as generateDescription,o as getDate};
+//# sourceMappingURL=utils-ulRZsC01.js.map

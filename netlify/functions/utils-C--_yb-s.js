@@ -1,0 +1,2 @@
+import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import{ofetch_default as n}from"./ofetch-Bzt0BXUH.js";import{timezone as r}from"./timezone-BrNu6iXe.js";import{load as i}from"cheerio";function a(a){return e.tryGet(a.link,async()=>{let e=await n(a.link),o=i(e);return a.pubDate=r(t(o(`.left-info .timer`).text()),8),a.author=o(`.left-info .reporter`).text(),a.description=o(`#contentStr`).html(),a})}export{a as fetchArticle};
+//# sourceMappingURL=utils-C--_yb-s.js.map

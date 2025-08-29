@@ -1,0 +1,10 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as n}from"./got-CdvI2yKX.js";import{load as r}from"cheerio";const i={path:`/:category?/:id?`,categories:[`new-media`],example:`/storm`,parameters:{category:`分类，见下表，默认为新聞總覽`,id:`子分类 ID，可在 URL 中找到`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`storm.mg/:category/:id`]}],name:`分类`,maintainers:[`nczitzk`],handler:a,description:`| 新聞總覽 | 地方新聞      | 歷史頻道 | 評論總覽    |
+| -------- | ------------- | -------- | ----------- |
+| articles | localarticles | history  | all-comment |
+
+::: tip
+  支持形如 \`https://www.storm.mg/category/118\` 的路由，即 [\`/storm/category/118\`](https://rsshub.app/storm/category/118)
+
+  支持形如 \`https://www.storm.mg/localarticle-category/s149845\` 的路由，即 [\`/storm/localarticle-category/s149845\`](https://rsshub.app/storm/localarticle-category/s149845)
+:::`};async function a(i){let a=i.req.param(`category`)??`articles`,o=i.req.param(`id`)??``,s=`https://www.storm.mg/${a}${o?`/${o}`:``}`,c=await n({method:`get`,url:s}),l=r(c.data),u=l(`.link_title`).toArray().map(e=>(e=l(e),{title:e.text(),link:e.attr(`href`)})),d=await Promise.all(u.map(i=>e.tryGet(i.link,async()=>{let e=await n({method:`get`,url:i.link}),a=r(e.data);return a(`.notify_wordings`).remove(),a(`#premium_block`).remove(),i.description=a(`#CMS_wrapper`).html(),i.author=a(`meta[property="dable:author"]`).attr(`content`),i.pubDate=t(a(`meta[itemprop="datePublished"]`).attr(`content`)),i})));return{title:l(`title`).text(),link:s,item:d}}export{i as route};
+//# sourceMappingURL=storm-fUi9k6Su.js.map

@@ -1,0 +1,2 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";import{timezone as t}from"./timezone-BrNu6iXe.js";import{load as n}from"cheerio";const r=`https://p-articles.com`,i=(r,i)=>{let a=n(i),o=a(`div.detail_title_02 > h4 > a:nth-child(2)`).text().trim();r.author=o;let s=a(`div.detail_title_02 > h4 `).text().trim();r.pubDate=t(e(s),8);let c=a(`div.detail_contect_01`).html();return r.description=c,r};export{i as ProcessFeed,r as rootUrl};
+//# sourceMappingURL=utils-hnuZKef4.js.map

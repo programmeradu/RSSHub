@@ -1,0 +1,1 @@
+{"version":3,"file":"utils-_GlJmu8z.js","names":[],"sources":["../../lib/routes/gitpod/utils.ts"],"sourcesContent":["const rootUrl = 'https://www.gitpod.io';\r\n\r\nexport { rootUrl };\r\n"],"mappings":"AAAA,MAAM,EAAU"}

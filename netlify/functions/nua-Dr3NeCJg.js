@@ -1,0 +1,5 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import"./timezone-BrNu6iXe.js";import"./wechat-mp-BwNEdjlr.js";import{utils_default as e}from"./utils-DFBQR_o1.js";const t={path:`/index/:type`,categories:[`university`],example:`/nua/index/346`,parameters:{type:`News Type`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!0,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`index.nua.edu.cn/:type/list.htm`]}],name:`Official Information`,maintainers:[`evnydd0sf`],handler:n,description:`| News Type | Parameters |
+| --------- | ---------- |
+| 公告      | 346        |
+| 南艺要闻  | 332        |`};async function n(t){let n=t.req.param(`type`),r=`https://www.nua.edu.cn`,i=`${r}/${n}/list.htm`,a=await e.ProcessList(i,r,`li.news`,`.news_meta`,`.col_title`),o=await e.ProcessFeed(a[0],`.read`);return{title:`NUA-`+a[1],link:i,description:`南京艺术学院 `+a[1],item:o}}export{t as route};
+//# sourceMappingURL=nua-Dr3NeCJg.js.map

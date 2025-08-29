@@ -1,0 +1,2 @@
+function e(e){try{let t=e.indexOf(`({`),n=e.lastIndexOf(`})`),r=e.substring(t+1,n+1);return r=r.replaceAll(String.raw`\'`,`'`),JSON.parse(r)}catch(e){let t=Error(`Failed to convert jsonp to json. ${e.message}`);throw t}}export{e as parseJSONP};
+//# sourceMappingURL=jsonp-helper-CyDB9XIr.js.map

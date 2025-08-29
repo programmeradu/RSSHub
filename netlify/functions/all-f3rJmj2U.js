@@ -1,0 +1,2 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./cache-kimkMTWJ.js";import"./render-CxhTJIsl.js";import"./parse-date-Bgabdhlb.js";import"./common-utils-CvkwbCD5.js";import"./ofetch-Bzt0BXUH.js";import{handler as e}from"./common-DB3fK00k.js";const t={name:`All Papers`,maintainers:[`5upernova-heng`],path:`/papers`,example:`/nber/papers`,features:{supportScihub:!0},radar:[{source:[`nber.org/papers`]}],handler:e,url:`nber.org/papers`};export{t as route};
+//# sourceMappingURL=all-f3rJmj2U.js.map

@@ -1,0 +1,2 @@
+import{config as e}from"./config-Dl8a1sIg.js";import{cache_default as t}from"./cache-kimkMTWJ.js";import{ofetch_default as n}from"./ofetch-Bzt0BXUH.js";import{load as r}from"cheerio";const i=`https://makerworld.com`,a=()=>t.tryGet(`makerworld:nextBuildId`,async()=>{let t=await n(`${i}/en`,{headers:{"User-Agent":e.trueUA}}),a=r(t),o=JSON.parse(a(`script#__NEXT_DATA__`).text());return o.buildId});export{i as baseUrl,a as getNextBuildId};
+//# sourceMappingURL=utils-BkItoape.js.map

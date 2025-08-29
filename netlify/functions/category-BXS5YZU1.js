@@ -1,0 +1,4 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import"./timezone-BrNu6iXe.js";import{handler as e}from"./common-CpycXa0M.js";const t={name:`分类`,path:[`/category/:id`],example:`/cnbeta/category/movie`,maintainers:[`nczitzk`],parameters:{id:`分类 id，可在对应分类页的 URL 中找到`},radar:[{source:[`cnbeta.com.tw/category/:id`],target:e=>`/cnbeta/category/${e.id.replace(`.htm`,``)}`}],handler:e,url:`cnbeta.com.tw`,description:`| 影视  | 音乐  | 游戏 | 动漫  | 趣闻  | 科学    | 软件 |
+| ----- | ----- | ---- | ----- | ----- | ------- | ---- |
+| movie | music | game | comic | funny | science | soft |`};export{t as route};
+//# sourceMappingURL=category-BXS5YZU1.js.map

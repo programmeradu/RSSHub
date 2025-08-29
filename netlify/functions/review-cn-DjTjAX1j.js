@@ -1,0 +1,4 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./cache-kimkMTWJ.js";import"./render-CxhTJIsl.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./utils-DGqNB3hk.js";import{handler as e}from"./review-DiSwGKVN.js";const t={path:`/review/:id/:order?/:lang?`,categories:[`game`],example:`/taptap/review/142793/hot`,parameters:{id:`游戏 ID，游戏主页 URL 中获取`,order:`排序方式，空为综合，可选如下`,lang:"语言，`zh-CN` 或 `zh-TW`，默认为 `zh-CN`"},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`www.taptap.cn/app/:id/review`,`www.taptap.cn/app/:id`],target:`/review/:id`}],name:`游戏评价`,maintainers:[`hoilc`,`TonyRL`],handler:e,description:`| 最新   | 综合 |
+| --- | --- |
+| new | hot |`};export{t as route};
+//# sourceMappingURL=review-cn-DjTjAX1j.js.map

@@ -1,0 +1,12 @@
+import{__dirname as e,init_esm_shims as t}from"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as n}from"./cache-kimkMTWJ.js";import{art as r}from"./render-CxhTJIsl.js";import{parseDate as i}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as a}from"./got-CdvI2yKX.js";import{timezone as o}from"./timezone-BrNu6iXe.js";import s from"node:path";import{load as c}from"cheerio";t();const l={path:`/:category?`,categories:[`new-media`],example:`/simpleinfo`,parameters:{category:`分类名`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`blog.simpleinfo.cc/blog/:category`],target:`/:category`}],name:`志祺七七`,maintainers:[`haukeng`],handler:u,description:`| 夥伴聊聊 | 專案設計 |
+| -------- | -------- |
+| work     | talk     |
+
+| 國內外新聞 | 政治百分百 | 社會觀察家 | 心理與哲學            |
+| ---------- | ---------- | ---------- | --------------------- |
+| news       | politics   | society    | psychology-philosophy |
+
+| 科學大探索 | 環境與健康         | ACG 快樂聊 | 好書籍分享   | 其它主題     |
+| ---------- | ------------------ | ---------- | ------------ | ------------ |
+| science    | environment-health | acg        | book-sharing | other-topics |`};async function u(t){let l=t.req.param(`category`),u=`https://blog.simpleinfo.cc${l?l===`work`||l===`talk`?`/blog/${l}`:`/shasha77?category=${l}`:`/shasha77`}`,d=await a(u),f=c(d.data),p=`${f(`.-active`).text()} - 簡訊設計`;f(`.-ad`).remove();let m=f(`.article-item`).toArray().map(e=>(e=f(e),{title:e.find(`.title`).text(),link:e.find(`a`).first().attr(`href`),category:e.find(`.category`).text()})),h=await Promise.all(m.map(t=>n.tryGet(t.link,async()=>{let n=await a(t.link),l=c(n.data);return t.author=l(`meta[property="article:author"]`).attr(`content`),t.pubDate=o(i(l(`meta[property="article:published_time"]`).attr(`content`)),8),t.description=r(s.join(e,`templates/description-b5c5b5ea.art`),{image:l(`meta[property="og:image"]`).attr(`content`),description:l(`.article-content`).first().html()}),t})));return{title:p,link:u,language:`zh-tw`,item:h}}export{l as route};
+//# sourceMappingURL=simpleinfo-1U1aT4pc.js.map

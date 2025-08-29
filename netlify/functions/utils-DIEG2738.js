@@ -1,0 +1,2 @@
+import{got_default as e}from"./got-CdvI2yKX.js";import{load as t}from"cheerio";const n=(n,r)=>r(n.link,async()=>{let r=await e({method:`get`,url:n.link}),i=t(r.data);return i(`.article-nfh-icon, .article-crumb, .article-share, .article-copyright`).remove(),n.description+=i(`#content`).html()??``,n.author=i(`meta[name="author"]`).attr(`content`),n});export{n as parseArticle};
+//# sourceMappingURL=utils-DIEG2738.js.map

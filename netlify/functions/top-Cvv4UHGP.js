@@ -1,0 +1,8 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as t}from"./got-CdvI2yKX.js";import{ViewType as n}from"./types-A5bA50Mg.js";import{invalid_parameter_default as r}from"./invalid-parameter-CUJdROXf.js";import{baseUrl as i,getPlurk as a}from"./utils-MqbSdmob.js";const o=new Set([`topReplurks`,`topFavorites`,`topResponded`]),s={path:`/top/:category?/:lang?`,categories:[`social-media`],view:n.SocialMedia,example:`/plurk/top/topReplurks`,parameters:{category:"Category, see the table below, `topReplurks` by default",lang:"Language, see the table below, `en` by default"},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`Top`,maintainers:[`TonyRL`],handler:c,description:`| Top Replurks | Top Favorites | Top Responded |
+| ------------ | ------------- | ------------- |
+| topReplurks  | topFavorites  | topResponded  |
+
+| English | 中文（繁體） |
+| ------- | ------------ |
+| en      | zh           |`};async function c(n){let{category:s=`topReplurks`,lang:c=`en`}=n.req.param();if(!o.has(s))throw new r(`Invalid category: ${s}`);let{data:l}=await t(`${i}/Stats/${s}`,{searchParams:{period:`day`,lang:c,limit:n.req.query(`limit`)?Number(n.req.query(`limit`)):90}}),u=await Promise.all(l.stats.map(e=>e[1]).map(t=>a(`plurk:${t.plurk_id}`,t,t.owner.display_name,e.tryGet)));return{title:`Top Plurk - Plurk`,image:`https://s.plurk.com/2c1574c02566f3b06e91.png`,link:`${i}/top#${s}`,item:u,language:c}}export{s as route};
+//# sourceMappingURL=top-Cvv4UHGP.js.map

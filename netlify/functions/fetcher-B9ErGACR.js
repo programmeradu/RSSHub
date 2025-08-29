@@ -1,0 +1,2 @@
+import{cache_default as e}from"./cache-kimkMTWJ.js";import{ofetch_default as t}from"./ofetch-Bzt0BXUH.js";function n(n,r){return e.tryGet(n,async()=>{let e=await t(n);return r(e)})}export{n as fetchDataItemCached};
+//# sourceMappingURL=fetcher-B9ErGACR.js.map

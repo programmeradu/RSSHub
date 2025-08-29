@@ -1,0 +1,6 @@
+import"./esm-shims-Dqvxr0BZ.js";import{config as e}from"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import{config_not_found_default as t}from"./config-not-found-BVqhRP9D.js";import{customFetch as n,generateTopicDataItem as r}from"./utils-BNlKla-0.js";const i={name:`用户足迹`,categories:[`social-media`],path:`/user/:id`,example:`/zsxq/user/2414218251`,parameters:{id:`用户id，从网页端url中获取`},maintainers:[`KarasuShin`],radar:[{source:[`wx.zsxq.com/dweb2/index/footprint/:id`]}],features:{requireConfig:[{name:`ZSXQ_ACCESS_TOKEN`,description:`知识星球访问令牌,获取方式：
+1. 登录知识星球网页版
+2. 打开浏览器开发者工具，切换到 Application 面板
+3. 点击侧边栏中的Storage -> Cookies -> https://wx.zsxq.com
+4. 复制 Cookie 中的 zsxq_access_token 值`}]},handler:a};async function a(i){let a=i.req.param(`id`),o=e.zsxq.accessToken;if(!o)throw new t(`该 RSS 源由于配置不正确而被禁用：令牌丢失。`);let s=Number(i.req.query(`limit`))||20;s>30&&(s=30);let c=await n(`/users/${a}`),{topics:l}=await n(`/users/${a}/topics/footprint?count=${s}`);return{title:`知识星球 - ${c.user.name}`,description:c.user.introduction,image:c.user.avatar_url,link:`https://wx.zsxq.com/dweb2/index/footprint/${a}`,item:r(l)}}export{i as route};
+//# sourceMappingURL=user-BkEvPc4N.js.map

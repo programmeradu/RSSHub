@@ -1,0 +1,6 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import"./config-not-found-BVqhRP9D.js";import{utils_default as e}from"./utils-BrGisCrd.js";const t={path:`/series/:id/:filter?`,categories:[`multimedia`],example:`/javdb/series/1NW`,parameters:{id:`编号，可在系列页 URL 中找到`,filter:"过滤，见下表，默认为 `全部`"},features:{requireConfig:[{name:`JAVDB_SESSION`,description:"JavDB登陆后的session值，可在控制台的cookie下查找 `_jdb_session` 的值，即可获取",optional:!0}],requirePuppeteer:!1,antiCrawler:!0,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`javdb.com/`],target:``}],name:`系列`,maintainers:[`nczitzk`],handler:n,url:`javdb.com/`,description:`| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |
+| ---- | -------- | -------- | -------- | ----- | ------- |
+|      | playable | single   | download | cnsub | preview |
+
+  所有系列编号参见 [系列庫](https://javdb.com/series)`};async function n(t){let n=t.req.param(`id`),r=t.req.param(`filter`)??``,i=`/series/${n}${r?`?f=${r}`:``}`,a={"":``,playable:`可播放`,single:`單體作品`,download:`可下載`,cnsub:`字幕`,preview:`預覽圖`},o=`JavDB${a[r]===``?``:` - ${a[r]}`} `;return await e.ProcessItems(t,i,o)}export{t as route};
+//# sourceMappingURL=series-5cH5K5ZL.js.map

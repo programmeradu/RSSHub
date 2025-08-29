@@ -1,0 +1,1 @@
+{"version":3,"file":"reject-Q-VxOB_U.js","names":[],"sources":["../../lib/errors/types/reject.ts"],"sourcesContent":["class RejectError extends Error {\r\n    name = 'RejectError';\r\n}\r\n\r\nexport default RejectError;\r\n"],"mappings":"AAAA,IAAM,EAAN,cAA0B,KAAM,CAC5B,KAAO,eAGX,EAAe"}

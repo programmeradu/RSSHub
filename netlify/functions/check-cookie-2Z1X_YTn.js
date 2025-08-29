@@ -1,0 +1,2 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./proxy-D7ccvALx.js";import"./dist-IvUHtNe1.js";import"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./puppeteer-f0D6AISB.js";import"./captcha-D9zPeElr.js";import{checkCookie as e}from"./util-BUhLyohA.js";const t={path:`/check-cookie`,description:`检查小红书 cookie 是否有效`,maintainers:[`DIYgod`],handler:n};async function n(){let t=await e();return{code:t?0:-1}}export{t as apiRoute};
+//# sourceMappingURL=check-cookie-2Z1X_YTn.js.map

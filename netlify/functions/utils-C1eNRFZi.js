@@ -1,0 +1,2 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";import{ofetch_default as t}from"./ofetch-Bzt0BXUH.js";const n=`https://jamesclear.com`,r=`${n}/wp-json/wp/v2`;async function i(e){let n=await t(`${r}/${e}`);return n}function a(t){return{title:t.title.rendered,link:t.link,description:t.content.rendered,pubDate:e(t.date_gmt),author:`James Clear`,guid:t.guid.rendered}}export{i as fetchContent,a as processItem,n as rootUrl};
+//# sourceMappingURL=utils-C1eNRFZi.js.map

@@ -1,0 +1,23 @@
+import{__dirname as e,init_esm_shims as t}from"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import{art as n}from"./render-CxhTJIsl.js";import{parseDate as r}from"./parse-date-Bgabdhlb.js";import{ofetch_default as i}from"./ofetch-Bzt0BXUH.js";import{ViewType as a}from"./types-A5bA50Mg.js";import o from"node:path";import{load as s}from"cheerio";t();const c=async t=>{let{state:a=`all`}=t.req.param(),c=Number.parseInt(t.req.query(`limit`)??`50`,10),l=`https://petition.parliament.uk`,u=new URL(`petitions?state=${a}`,l).href,d=new URL(`petitions.json`,l).href,f=await i(u),p=s(f),m=p(`html`).prop(`lang`)??`en`,h=await i(d,{query:{page:1,state:a}}),g=h.data.slice(0,c).map(t=>{let i=t.attributes,a=i.action,s=n(o.join(e,`templates/description-0ba79da1.art`),{intro:i.background,description:i.additional_details}),c=`parliament.uk-petition-${t.id}`,u=i.creator_name,d=i.departments?.map(e=>({url:e.url,type:`related`,content_html:e.name}));return{title:a,description:s,pubDate:r(i.created_at),link:new URL(`petitions/${t.id}`,l).href,category:[...new Set([...i.topics??[],...i.departments?.map(e=>e.name)??[]])].filter(Boolean),author:u,guid:c,id:c,content:{html:s,text:i.background},updated:r(i.updated_at),language:m,_extra:{links:d?.length?d:void 0}}}),_=p(`meta[property="og:image"]`).prop(`content`);return{title:p(`h1.page-title`).text(),description:p(`meta[property="twitter:description"]`).prop(`content`),link:u,item:g,allowEmpty:!0,image:_,author:p(`meta[name="msapplication-tooltip"]`).prop(`content`),language:m,id:p(`meta[property="og:url"]`).prop(`content`)}},l={path:`/petitions/:state?`,name:`Petitions`,url:`petition.parliament.uk`,maintainers:[`nczitzk`],handler:c,example:`/parliament.uk/petitions/all`,parameters:{state:"State, `all` by default, see below"},description:`::: tip
+If you subscribe to [Recent petitions](https://petition.parliament.uk/petitions?state=recent)，where the URL is \`https://petition.parliament.uk/petitions?state=recent\`, use the value of \`state\` as the parameter to fill in. Therefore, the route will be [\`/parliament.uk/petitions/recent\`](https://rsshub.app/parliament.uk/petitions/recent).
+:::
+
+<details>
+<summary>More states</summary>
+
+| Name                            | ID                |
+| ------------------------------- | ----------------- |
+| All petitions                   | all               |
+| Open petitions                  | open              |
+| Recent petitions                | recent            |
+| Closed petitions                | closed            |
+| Rejected petitions              | rejected          |
+| Awaiting government response    | awaiting_response |
+| Government responses            | with_response     |
+| Awaiting a debate in Parliament | awaiting_debate   |
+| Debated in Parliament           | debated           |
+| Not debated in Parliament       | not_debated       |
+
+</details>
+    `,categories:[`government`],features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportRadar:!0,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`petition.parliament.uk/petitions`],target:(e,t)=>{let n=new URL(t),r=n.searchParams.get(`state`);return`/parliament.uk/petitions${r?`/${r}`:``}`}},{title:`All petitions`,source:[`petition.parliament.uk/petitions`],target:`/petitions/all`},{title:`Open petitions`,source:[`petition.parliament.uk/petitions`],target:`/petitions/open`},{title:`Recent petitions`,source:[`petition.parliament.uk/petitions`],target:`/petitions/recent`},{title:`Closed petitions`,source:[`petition.parliament.uk/petitions`],target:`/petitions/closed`},{title:`Rejected petitions`,source:[`petition.parliament.uk/petitions`],target:`/petitions/rejected`},{title:`Awaiting government response`,source:[`petition.parliament.uk/petitions`],target:`/petitions/awaiting_response`},{title:`Government responses`,source:[`petition.parliament.uk/petitions`],target:`/petitions/with_response`},{title:`Awaiting a debate in Parliament`,source:[`petition.parliament.uk/petitions`],target:`/petitions/awaiting_debate`},{title:`Debated in Parliament`,source:[`petition.parliament.uk/petitions`],target:`/petitions/debated`},{title:`Not debated in Parliament`,source:[`petition.parliament.uk/petitions`],target:`/petitions/not_debated`}],view:a.Articles};export{c as handler,l as route};
+//# sourceMappingURL=petitions-BPM6c68F.js.map

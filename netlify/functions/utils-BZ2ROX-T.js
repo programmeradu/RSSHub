@@ -1,0 +1,2 @@
+import{got_default as e}from"./got-CdvI2yKX.js";import{load as t}from"cheerio";const n=`https://www.woshipm.com`,r=(n,r)=>r(n.link,async()=>{let{data:r}=await e(n.link),i=t(r);return i(`.support-author`).remove(),n.description=i(`.article--content`).html(),n});export{n as baseUrl,r as parseArticle};
+//# sourceMappingURL=utils-BZ2ROX-T.js.map

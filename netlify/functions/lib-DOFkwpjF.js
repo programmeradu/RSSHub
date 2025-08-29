@@ -1,0 +1,7 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import"./timezone-BrNu6iXe.js";import{invalid_parameter_default as e}from"./invalid-parameter-CUJdROXf.js";import"./wechat-mp-BwNEdjlr.js";import{utils_default as t}from"./utils-DFBQR_o1.js";const n=`https://lib.nua.edu.cn`,r={path:`/lib/:type`,categories:[`university`],example:`/nua/lib/xwdt`,parameters:{type:`News Type`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!0,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`lib.nua.edu.cn/:type/list.htm`]}],name:`Library`,maintainers:[`evnydd0sf`],handler:i,description:`| News Type | Parameters |
+| --------- | ---------- |
+| 新闻动态  | xwdt       |
+| 党建动态  | djdt       |
+| 资源动态  | zydt       |
+| 服务动态  | fwdt       |`};async function i(r){let i=r.req.param(`type`),a;switch(i){case`xwdt`:a=`.wp_column.column-1.selected`;break;case`djdt`:a=`.wp_column.column-2.selected`;break;case`zydt`:a=`.wp_column.column-3.selected`;break;case`fwdt`:a=`.wp_column.column-4.selected`;break;default:throw new e(`暂不支持对${i}的订阅`)}let o=`${n}/${i}/list.htm`,s=await t.ProcessList(o,n,`div.news_con`,`.news_date`,a),c=await t.ProcessFeed(s[0],`.wp_articlecontent`);return{title:`NUA-图书馆-`+s[1],link:`${n}/${i}/list.htm`,description:`南京艺术学院 图书馆 `+s[1],item:c}}export{r as route};
+//# sourceMappingURL=lib-DOFkwpjF.js.map

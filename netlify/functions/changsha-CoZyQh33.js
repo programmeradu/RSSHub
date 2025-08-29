@@ -1,0 +1,7 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{parseDate as e}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as t}from"./got-CdvI2yKX.js";import{load as n}from"cheerio";const r=`http://www.supplywater.com`,i={path:`/changsha/:channelId?`,categories:[`forecast`],example:`/tingshuitz/changsha/78`,parameters:{channelId:`N`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`长沙市`,maintainers:[`shansing`],handler:a,description:`可能仅限于中国大陆服务器访问，以实际情况为准。
+
+| channelId | 分类     |
+| --------- | -------- |
+| 78        | 计划停水 |
+| 157       | 抢修停水 |`};async function a(i){let{channelId:a=78}=i.req.param(),o=await t(`http://www.supplywater.com/tstz-`+a+`.aspx`),s=n(o.data),c=s(`.mainRightBox .news-title`).text(),l=s(`.mainRightBox .announcements-title a`).toArray().map(e=>(e=s(e),{title:e.text().trim(),link:r+e.attr(`href`).trim()})),u=await Promise.all(l.map(async r=>{let i=await t(r.link),a=n(i.data),o={title:r.title,description:a(`.mainRightBox div:last`).html().trim(),pubDate:e(a(`.mainRightBox .gxsj span:first`).text()+` +0800`,`YYYY/M/D H:m:s ZZ`),link:r.link,author:a(`.mainRightBox .gxsj span:last`).text()};return o}));return{title:`${c}通知 - 长沙水业集团`,link:`${r}/fuwuzhinan.aspx`,item:u}}export{i as route};
+//# sourceMappingURL=changsha-CoZyQh33.js.map

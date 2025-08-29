@@ -1,6 +1,7 @@
 import { config } from '@/config';
 import redis from './redis';
 import memory from './memory';
+import netlifyFallback from './netlify-fallback';
 import type CacheModule from './base';
 import logger from '@/utils/logger';
 
@@ -25,6 +26,17 @@ if (config.cache.type === 'redis') {
         }
     };
     globalCache.set = cacheModule.set;
+} else if (config.cache.type === 'netlify-fallback') {
+    // Use Netlify-optimized fallback cache
+    cacheModule = netlifyFallback;
+    cacheModule.init();
+    globalCache.get = async (key) => {
+        if (key && cacheModule.status.available) {
+            return await cacheModule.get(key);
+        }
+    };
+    globalCache.set = cacheModule.set;
+    logger.info('Using Netlify fallback cache with Redis failover support');
 } else if (config.cache.type === 'memory') {
     cacheModule = memory;
     cacheModule.init();

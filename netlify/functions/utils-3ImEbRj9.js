@@ -1,0 +1,2 @@
+import{got_default as e}from"./got-CdvI2yKX.js";import{load as t}from"cheerio";async function n(n,r,i,a,o=e=>e){let s=await e({method:`get`,url:r,https:{rejectUnauthorized:!1}}),c=t(s.data),l=c(n),u=o(c(a).text()),d=c(i).text();return l?{pageInfo:l.html(),date:u,title:d}:{pageInfo:`无法获取内容`,date:`1970-1-1`,title:`无法获取标题`}}const r=n;export{r as getPageItemAndDate};
+//# sourceMappingURL=utils-3ImEbRj9.js.map

@@ -1,0 +1,2 @@
+import{__dirname as e,init_esm_shims as t}from"./esm-shims-Dqvxr0BZ.js";import{art as n}from"./render-CxhTJIsl.js";import r from"node:path";t();const i=(t,i)=>n(r.join(e,`templates/courseDesc-4e7c77df.art`),{picurl:t,desc:i});var a={courseDesc:i};export{a as utils_default};
+//# sourceMappingURL=utils-BboMg96d.js.map

@@ -1,0 +1,2 @@
+const e=(e,t,n)=>e==null?t==null?n:t:e,t=e=>{if(e==null)return e;if(Array.isArray(e)){if(e.length===0)return;e=e[0]}return e=e.toString(),!(e.toLowerCase()===`false`||e===`0`)},n=e=>{if(e==null)return e;if(Array.isArray(e)){if(e.length===0)return;e=e[0]}return e=e.toString(),Number.parseInt(e)},r=e=>{if(e==null)return e;if(Array.isArray(e)){if(e.length===0)return;e=e[0]}return e=e.toString(),Number.parseFloat(e)};export{e as fallback,t as queryToBoolean,r as queryToFloat,n as queryToInteger};
+//# sourceMappingURL=readable-social-D7TWDGpz.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"captcha-D9zPeElr.js","names":[],"sources":["../../lib/errors/types/captcha.ts"],"sourcesContent":["class CaptchaError extends Error {\r\n    name = 'CaptchaError';\r\n}\r\n\r\nexport default CaptchaError;\r\n"],"mappings":"AAAA,IAAM,EAAN,cAA2B,KAAM,CAC7B,KAAO,gBAGX,EAAe"}

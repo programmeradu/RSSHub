@@ -1,0 +1,2 @@
+import{got_default as e}from"./got-CdvI2yKX.js";import{puppeteer_default as t}from"./puppeteer-f0D6AISB.js";async function n(n,r=!1){if(r){let e=await t();try{let t=await e.newPage();await t.setRequestInterception(!0),t.on(`request`,e=>{e.resourceType()===`document`||e.resourceType()===`script`?e.continue():e.abort()}),await t.goto(n,{waitUntil:`networkidle0`});let r=await t.content();return r}finally{await e.close()}}else{let t=await e(n),r=t.data;return r}}export{n as getContent};
+//# sourceMappingURL=utils-PhIcoDkB.js.map

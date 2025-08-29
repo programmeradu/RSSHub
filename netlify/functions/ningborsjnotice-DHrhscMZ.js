@@ -1,0 +1,6 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{parseDate as e}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as t}from"./got-CdvI2yKX.js";import{load as n}from"cheerio";const r={path:`/zj/ningborsjnotice/:colId?`,categories:[`government`],example:`/gov/zj/ningborsjnotice/1229676740`,parameters:{colId:`公告分类id、详细信息点击源网站http://rsj.ningbo.gov.cn/请求中寻找`},radar:[{source:[`rsj.ningbo.gov.cn/col/col1229676740/index.html`],target:`/zj/ningborsjnotice/:colId?`}],name:`宁波市人力资源和社会保障局-公告`,url:`rsj.ningbo.gov.cn`,maintainers:[`HaoyuLee`],description:`
+| 公告类别         | colId |
+| ------------ | -- |
+| 事业单位进人公告     | 1229676740  |
+    `,async handler(r){let{colId:i=`1229676740`}=r.req.param(),a=`http://rsj.ningbo.gov.cn/col/col${i}/index.html`,{data:o}=await t(a),s=n(o)(`.titel.bgcolor01`).text(),c=/<li class="news_line">.*<\/li>/g,l=o.match(c).map(t=>{let r=n(t),i=r(`.news_titel`);return{title:`宁波人社公告-${s}:${i.text()}`,link:`http://rsj.ningbo.gov.cn${i.attr(`href`)}`,pubDate:e(r(`.news_date`).text().replaceAll(/\[|]/g,``)),author:`宁波市人力资源和社会保障局`,description:i.text()}});return{title:`宁波市人力资源和社会保障局-公告`,link:a,item:l}}};export{r as route};
+//# sourceMappingURL=ningborsjnotice-DHrhscMZ.js.map

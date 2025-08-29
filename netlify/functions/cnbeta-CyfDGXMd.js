@@ -1,0 +1,2 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import"./timezone-BrNu6iXe.js";import{handler as e}from"./common-CpycXa0M.js";const t={name:`头条资讯`,path:[`/`],example:`/cnbeta`,radar:[{source:[`cnbeta.com.tw/`]}],maintainers:[`kt286`,`HaitianLiu`,`nczitzk`],handler:e,url:`cnbeta.com.tw`};export{t as route};
+//# sourceMappingURL=cnbeta-CyfDGXMd.js.map

@@ -1,0 +1,2 @@
+import{got_default as e}from"./got-CdvI2yKX.js";const t=`https://zhiy.cc`,n=async n=>{let{data:r}=await e(`${t}/api/app/share/garden/users/${n}`);return r};export{t as baseUrl,n as fetchUserDate};
+//# sourceMappingURL=utils-DB7nfGEN.js.map

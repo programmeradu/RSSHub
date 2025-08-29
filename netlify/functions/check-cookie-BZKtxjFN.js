@@ -1,0 +1,2 @@
+import"./esm-shims-Dqvxr0BZ.js";import{config as e}from"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import{ofetch_default as t}from"./ofetch-Bzt0BXUH.js";const n={path:`/check-cookie`,description:`检查 zhihu cookie 是否有效`,maintainers:[`DIYgod`],handler:r};async function r(){let n=e.zhihu.cookies;if(!n)return{code:-1};let r=await t(`https://www.zhihu.com/api/v4/me?include=is_realname`,{headers:{Referer:`https://www.zhihu.com/`,Cookie:n}});return{code:r.name?0:-1}}export{n as apiRoute};
+//# sourceMappingURL=check-cookie-BZKtxjFN.js.map

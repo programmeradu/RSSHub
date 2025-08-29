@@ -1,0 +1,8 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as n}from"./got-CdvI2yKX.js";import{load as r}from"cheerio";const i={path:`/rsc/:category?`,categories:[`university`],example:`/xaut/rsc/tzgg`,parameters:{category:`通知类别，默认为通知公告`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`人事处`,maintainers:[`mocusez`,`light0926`],handler:a,description:`::: warning
+  有些内容指向外部链接，目前只提供这些链接，不提供具体内容，去除 jwc 和 index 的修改
+:::
+
+| 通知公告 | 工作动态 |
+| :------: | :------: |
+|   tzgg   |   gzdt   |`};async function a(i){let a=i.req.param(`category`),o={tzgg:`tzgg.htm`,gzdt:`gzdt.htm`},s={tzgg:`通知公告`,gzdt:`工作动态`};s[a]===void 0&&(a=`tzgg`);let c=await n({method:`get`,url:`http://renshichu.xaut.edu.cn/`+o[a]}),l=c.body,u=r(l),d=u(`.vsb-space.n_right .list .cleafix`).toArray().map(e=>{e=u(e);let t=e.find(`.list_wen a`).eq(0).attr(`href`),n=t.slice(0,4)===`http`?t:`http://renshichu.xaut.edu.cn/`+t,r=e.find(`.list_wen a.tit`).text();return{title:r,link:n}});return{title:`西安理工大学人事处-`+s[a],link:`http://renshichu.xaut.edu.cn`,description:`西安理工大学人事处-`+s[a],item:await Promise.all(d.map(i=>e.tryGet(i.link,async()=>{if(i.link.slice(0,16)===`http://renshichu`){let e=await n({method:`get`,url:i.link}),a=r(e.body);i.description=a(`.vsb-space form[name]`).html(),i.pubDate=t(a(`.vsb-space form[name] h3 span:contains(时间)`).text().slice(3))}else i.description=`这是一个外链("▔□▔)/("▔□▔)/所以你没法直接看到内容`+i.link;return i})))}}export{i as route};
+//# sourceMappingURL=rsc-edIv68yE.js.map

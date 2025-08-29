@@ -97,6 +97,19 @@ export type Config = {
         userLimit?: number;
     };
 
+    // Netlify-specific Configuration
+    netlify: {
+        functionTimeout: number;
+        maxMemory: number;
+        enableEdgeCaching: boolean;
+        enableFallbackCache: boolean;
+        coldStartOptimization: boolean;
+        memoryMonitoring: boolean;
+        requestIdHeader: string;
+        errorReporting: boolean;
+        performanceLogging: boolean;
+    };
+
     // Route-specific Configurations
     bilibili: {
         cookies: Record<string, string | undefined>;
@@ -444,6 +457,61 @@ const toBoolean = (value: string | undefined, defaultValue: boolean) => {
 
 const toInt = (value: string | undefined, defaultValue?: number) => (value === undefined ? defaultValue : Number.parseInt(value));
 
+const getDefaultCacheType = () => {
+    // If we're in a Netlify environment and fallback cache is enabled, use netlify-fallback
+    if ((envs.NETLIFY || envs.NETLIFY_DEV) && toBoolean(envs.NETLIFY_ENABLE_FALLBACK_CACHE, true)) {
+        return 'netlify-fallback';
+    }
+    
+    // If Redis is available, use it
+    if (envs.REDIS_URL && envs.REDIS_URL !== 'redis://localhost:6379/') {
+        return 'redis';
+    }
+    
+    // Default to memory cache
+    return 'memory';
+};
+
+const getDefaultRequestTimeout = () => {
+    // In Netlify environment, use a more conservative timeout to avoid function timeouts
+    if (envs.NETLIFY || envs.NETLIFY_DEV) {
+        const functionTimeout = toInt(envs.NETLIFY_FUNCTION_TIMEOUT, 30000);
+        // Reserve 5 seconds for processing and response generation
+        return Math.max(5000, functionTimeout - 5000);
+    }
+    
+    // Default timeout for other environments
+    return 30000;
+};
+
+const validateNetlifyConfig = (netlifyConfig: any) => {
+    const errors: string[] = [];
+    
+    // Validate function timeout (max 30 seconds for Netlify Functions, 15 minutes for Pro)
+    if (netlifyConfig.functionTimeout > 30000 && !envs.NETLIFY_PRO) {
+        errors.push(`NETLIFY_FUNCTION_TIMEOUT cannot exceed 30000ms (30 seconds) for standard Netlify Functions. Current: ${netlifyConfig.functionTimeout}ms`);
+    } else if (netlifyConfig.functionTimeout > 900000) {
+        errors.push(`NETLIFY_FUNCTION_TIMEOUT cannot exceed 900000ms (15 minutes) even for Netlify Pro. Current: ${netlifyConfig.functionTimeout}ms`);
+    }
+    
+    // Validate memory limits (max 1008 MB for Netlify Functions)
+    if (netlifyConfig.maxMemory > 1008) {
+        errors.push(`NETLIFY_MAX_MEMORY cannot exceed 1008 MB for Netlify Functions. Current: ${netlifyConfig.maxMemory}MB`);
+    }
+    
+    // Validate memory is reasonable minimum
+    if (netlifyConfig.maxMemory < 128) {
+        errors.push(`NETLIFY_MAX_MEMORY should be at least 128 MB for proper function operation. Current: ${netlifyConfig.maxMemory}MB`);
+    }
+    
+    // Validate request ID header format
+    if (netlifyConfig.requestIdHeader && !/^[a-z0-9-]+$/i.test(netlifyConfig.requestIdHeader)) {
+        errors.push(`NETLIFY_REQUEST_ID_HEADER must be a valid HTTP header name. Current: ${netlifyConfig.requestIdHeader}`);
+    }
+    
+    return errors;
+};
+
 const calculateValue = () => {
     const bilibili_cookies: Record<string, string | undefined> = {};
     const email_config: Record<string, string | undefined> = {};
@@ -484,13 +552,13 @@ const calculateValue = () => {
         },
         listenInaddrAny: toBoolean(envs.LISTEN_INADDR_ANY, true), // 是否允许公网连接，取值 0 1
         requestRetry: toInt(envs.REQUEST_RETRY, 2), // 请求失败重试次数
-        requestTimeout: toInt(envs.REQUEST_TIMEOUT, 30000), // Milliseconds to wait for the server to end the response before aborting the request
+        requestTimeout: toInt(envs.REQUEST_TIMEOUT, getDefaultRequestTimeout()), // Milliseconds to wait for the server to end the response before aborting the request
         ua: envs.UA ?? (toBoolean(envs.NO_RANDOM_UA, false) ? TRUE_UA : randUserAgent({ browser: 'chrome', os: 'mac os', device: 'desktop' })),
         trueUA: TRUE_UA,
         allowOrigin: envs.ALLOW_ORIGIN,
         // cache
         cache: {
-            type: envs.CACHE_TYPE || (envs.CACHE_TYPE === '' ? '' : 'memory'), // 缓存类型，支持 'memory' 和 'redis'，设为空可以禁止缓存
+            type: envs.CACHE_TYPE || (envs.CACHE_TYPE === '' ? '' : getDefaultCacheType()), // 缓存类型，支持 'memory', 'redis', 'netlify-fallback'，设为空可以禁止缓存
             requestTimeout: toInt(envs.CACHE_REQUEST_TIMEOUT, 60),
             routeExpire: toInt(envs.CACHE_EXPIRE, 5 * 60), // 路由缓存时间，单位为秒
             contentExpire: toInt(envs.CACHE_CONTENT_EXPIRE, 1 * 60 * 60), // 不变内容缓存时间，单位为秒
@@ -567,6 +635,19 @@ const calculateValue = () => {
             description: envs.FOLLOW_DESCRIPTION,
             price: toInt(envs.FOLLOW_PRICE),
             userLimit: toInt(envs.FOLLOW_USER_LIMIT),
+        },
+
+        // Netlify-specific Configuration
+        netlify: {
+            functionTimeout: toInt(envs.NETLIFY_FUNCTION_TIMEOUT, 30000), // 30 seconds default, max for Netlify Functions
+            maxMemory: toInt(envs.NETLIFY_MAX_MEMORY, 1008), // 1008 MB default, max for Netlify Functions
+            enableEdgeCaching: toBoolean(envs.NETLIFY_ENABLE_EDGE_CACHING, true),
+            enableFallbackCache: toBoolean(envs.NETLIFY_ENABLE_FALLBACK_CACHE, true),
+            coldStartOptimization: toBoolean(envs.NETLIFY_COLD_START_OPTIMIZATION, true),
+            memoryMonitoring: toBoolean(envs.NETLIFY_MEMORY_MONITORING, false),
+            requestIdHeader: envs.NETLIFY_REQUEST_ID_HEADER || 'x-nf-request-id',
+            errorReporting: toBoolean(envs.NETLIFY_ERROR_REPORTING, true),
+            performanceLogging: toBoolean(envs.NETLIFY_PERFORMANCE_LOGGING, false),
         },
 
         // Route-specific Configurations
@@ -902,6 +983,20 @@ const calculateValue = () => {
         },
     };
 
+    // Validate Netlify configuration if we're in a Netlify environment
+    if (envs.NETLIFY || envs.NETLIFY_DEV) {
+        const netlifyValidationErrors = validateNetlifyConfig(_value.netlify);
+        if (netlifyValidationErrors.length > 0) {
+            console.error('Netlify Configuration Validation Errors:');
+            netlifyValidationErrors.forEach(error => console.error(`  - ${error}`));
+            
+            // In production, we should fail fast on configuration errors
+            if (envs.NODE_ENV === 'production') {
+                throw new Error(`Invalid Netlify configuration: ${netlifyValidationErrors.join(', ')}`);
+            }
+        }
+    }
+
     for (const name in _value) {
         value[name] = _value[name];
     }
@@ -936,4 +1031,20 @@ export const config: Config = value;
 export const setConfig = (env: Record<string, any>) => {
     envs = Object.assign(process.env, env);
     calculateValue();
+};
+
+// Netlify environment detection utilities
+export const isNetlifyEnvironment = () => !!(envs.NETLIFY || envs.NETLIFY_DEV);
+export const isNetlifyProduction = () => !!(envs.NETLIFY && !envs.NETLIFY_DEV);
+export const isNetlifyDevelopment = () => !!envs.NETLIFY_DEV;
+
+// Netlify configuration helpers
+export const getNetlifyConfig = () => config.netlify;
+export const validateNetlifyEnvironment = () => {
+    if (!isNetlifyEnvironment()) {
+        return { valid: false, errors: ['Not running in Netlify environment'] };
+    }
+    
+    const errors = validateNetlifyConfig(config.netlify);
+    return { valid: errors.length === 0, errors };
 };

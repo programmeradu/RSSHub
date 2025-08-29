@@ -1,0 +1,2 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";import{ofetch_default as t}from"./ofetch-Bzt0BXUH.js";import{timezone as n}from"./timezone-BrNu6iXe.js";const r=e=>t(e),i=t=>t.map(t=>{let{id:r,title:i,content:a,date_gmt:o,modified_gmt:s,link:c,_embedded:l}=t;return{id:r,title:i.rendered,description:a.rendered,link:c,category:l[`wp:term`][0].map(e=>e.name),author:l.author.map(e=>e.name).join(`, `),pubDate:n(e(o),0),updated:n(e(s),0)}});export{r as getData,i as getList};
+//# sourceMappingURL=utils-BImtL_g-.js.map

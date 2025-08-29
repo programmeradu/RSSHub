@@ -1,0 +1,8 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as n}from"./got-CdvI2yKX.js";const r={5:`全部公告`,19:`产品发布`,21:`规则变更`,20:`维护公告`,22:`其他公告`},i={path:`/docs/:dirId?`,categories:[`programming`],example:`/jinritemai/docs/19`,parameters:{dirId:`公告分类, 可在页面URL获取 默认为全部`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`平台公告`,maintainers:[`blade0910`],handler:a,description:`| 类型    | type    |
+| --------- | ---------- |
+| 全部公告    | 5    |
+| 产品发布    | 19   |
+| 规则变更    | 21   |
+| 维护公告    | 20   |
+| 其他公告    | 22   |`};async function a(i){let a=i.req.param(`dirId`)||`5`,o=`https://op.jinritemai.com/doc/external/open/queryDocArticleList?pageIndex=0&pageSize=10&status=1&dirId=${a}&orderType=3`,s=await n({method:`get`,url:o}),c=s.data.data.articles.map(e=>({title:e.title,id:e.id,dirName:e.dirName,link:`https://op.jinritemai.com/docs/notice-docs/${a}/${e.id}`,pubDate:t(e.updateTime*1e3)})),l=await Promise.all(c.map(t=>e.tryGet(t.link,async()=>{let e=await n({method:`get`,url:`https://op.jinritemai.com/doc/external/open/queryDocArticleDetail?articleId=${t.id}&onlyView=false`});return t.description=e.data.data.article.content,t})));return{title:`抖店开放平台 - ${r[a]??`平台公告`}`,link:`https://op.jinritemai.com/docs/notice-docs/${a}`,item:l}}export{i as route};
+//# sourceMappingURL=docs-B2AxBmI1.js.map

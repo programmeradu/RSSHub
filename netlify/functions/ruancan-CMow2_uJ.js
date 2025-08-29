@@ -1,0 +1,2 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import{utils_default as e}from"./utils-UZ1EzmlJ.js";const t={path:`/`,radar:[{source:[`ruancan.com/`],target:``}],name:`Unknown`,maintainers:[],handler:n,url:`ruancan.com/`};async function n(t){return await e(t,``)}export{t as route};
+//# sourceMappingURL=ruancan-CMow2_uJ.js.map

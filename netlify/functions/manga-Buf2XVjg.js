@@ -1,0 +1,5 @@
+import"./esm-shims-Dqvxr0BZ.js";import{config as e}from"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import{cache_default as t}from"./cache-kimkMTWJ.js";import"./ofetch-Bzt0BXUH.js";import{fetchData as n,processItems as r}from"./utils-BX6tXMI8.js";const i={path:`/manga/:order`,categories:[`anime`],example:`/skebetter/manga/1`,parameters:{order:`Order, see below.`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`Manga`,maintainers:[`SnowAgar25`],handler:a,radar:[{title:`Manga - Latest`,source:[`skebetter.com/series`],target:`/manga/1`},{title:`Manga - Hot`,source:[`skebetter.com/series`],target:`/manga/2`}],description:`
+| 新着 (Latest) | 人気 (Hot) |
+| ---- | ---- |
+| 1    | 2    |`};async function a(i){let a=i.req.param(`order`)??`1`,o={1:`新着`,2:`人気`},s=`https://api.twieromanga.com/api/mangaseries?order=${a}`,c=await t.tryGet(s,async()=>{let e=await n(s,!0);return r(e,`manga`)},e.cache.routeExpire,!1);return{title:`Skebetter Manga - ${o[a]}`,link:`https://skebetter.com/series?order=${a}`,item:c}}export{i as route};
+//# sourceMappingURL=manga-Buf2XVjg.js.map

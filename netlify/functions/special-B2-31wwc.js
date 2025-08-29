@@ -1,0 +1,2 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./cache-kimkMTWJ.js";import"./render-CxhTJIsl.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{handler as e}from"./common-DVTHh5kj.js";const t={path:`/special/1192`,parameters:{id:`分类 id，见下表，可在对应分类页 URL 中找到`},name:`专题`,example:`/jiemian/special/1192`,maintainers:[`nczitzk`],handler:e};export{t as route};
+//# sourceMappingURL=special-B2-31wwc.js.map

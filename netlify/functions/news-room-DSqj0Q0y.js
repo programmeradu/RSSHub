@@ -1,0 +1,12 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as n}from"./got-CdvI2yKX.js";import{load as r}from"cheerio";const i={path:`/news-room/:category?/:language?`,categories:[`government`],example:`/who/news-room/feature-stories`,parameters:{category:`Category, see below, Feature stories by default`,language:`Language, see below, English by default`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`who.int/news-room/:type`],target:`/news-room/:type`}],name:`Newsroom`,maintainers:[`LogicJake`,`nczitzk`],handler:a,url:`who.int/news`,description:`Category
+
+| Feature stories | Commentaries |
+| --------------- | ------------ |
+| feature-stories | commentaries |
+
+  Language
+
+| English | العربية | 中文 | Français | Русский | Español | Português |
+| ------- | ------- | ---- | -------- | ------- | ------- | --------- |
+| en      | ar      | zh   | fr       | ru      | es      | pt        |`};async function a(i){let a=i.req.param(`category`)??`feature-stories`,o=i.req.param(`language`)??``,s=`https://www.who.int`,c=`${s}/${o?`${o}/`:``}news-room/${a}`,l=await n({method:`get`,url:c}),u=r(l.data),d=u(`.list-view--item a`);if(d.length===0){let e=await n({method:`get`,url:`${s}/api/hubs/${a.replaceAll(`-`,``)}?sf_culture=zh&$orderby=PublicationDateAndTime%20desc&$select=Title,PublicationDateAndTime,ItemDefaultUrl&$top=30`});d=e.data.value.map(e=>({title:e.Title,link:`${c}/detail/${e.ItemDefaultUrl}`,pubDate:t(e.PublicationDateAndTime)}))}else d=d.toArray().map(e=>{e=u(e);let t=e.attr(`href`);return{link:`${t.indexOf(`http`)===0?``:s}${e.attr(`href`)}`}});let f=await Promise.all(d.map(i=>e.tryGet(i.link,async()=>{let e=await n({method:`get`,url:i.link}),a=e.data.match(/"headline":"(.*)","description":"(.*)","datePublished":"(.*)","image"/);if(a)i.title=a[1],i.description=a[2],i.pubDate=t(a[3]);else{let t=r(e.data);i.description=t(`.sf-content-block`).html()}return i})));return{title:`${u(`meta[property="og:title"]`).attr(`content`)} - WHO`,link:c,item:f}}export{i as route};
+//# sourceMappingURL=news-room-DSqj0Q0y.js.map

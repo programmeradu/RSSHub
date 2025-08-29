@@ -1,0 +1,11 @@
+import{__dirname as e,init_esm_shims as t}from"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{art as n}from"./render-CxhTJIsl.js";import{parseDate as r}from"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as i}from"./got-CdvI2yKX.js";import a from"node:path";t();const o={path:`/inquire/:category?/:select?/:keyword?`,categories:[`finance`],example:`/szse/inquire`,parameters:{category:"类型，见下表，默认为 `0` 即 主板",select:`函件类别, 见下表，默认为全部函件类别`,keyword:`公司代码或简称，默认为空`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`szse.cn/disclosure/supervision/inquire/index.html`,`szse.cn/`],target:`/inquire`}],name:`问询函件`,maintainers:[`Jeason0228`,`nczitzk`],handler:s,url:`szse.cn/disclosure/supervision/inquire/index.html`,description:`类型
+
+| 主板 | 创业板 |
+| ---- | ------ |
+| 0    | 1      |
+
+  函件类别
+
+| 全部函件类别 | 非许可类重组问询函 | 问询函 | 违法违规线索分析报告 | 许可类重组问询函 | 监管函（会计师事务所模板） | 提请关注函（会计师事务所模板） | 年报问询函 | 向中介机构发函 | 半年报问询函 | 关注函 | 公司部函 | 三季报问询函 |
+| ------------ | ------------------ | ------ | -------------------- | ---------------- | -------------------------- | ------------------------------ | ---------- | -------------- | ------------ | ------ | -------- | ------------ |`};async function s(t){let o=t.req.param(`category`)??`0`,s=t.req.param(`select`)??`全部函件类别`,c=t.req.param(`keyword`)??``,l=`https://www.szse.cn`,u=`${l}/api/report/ShowReport/data?SHOWTYPE=JSON&CATALOGID=main_wxhj&TABKEY=tab${Number.parseInt(o)+2}${s===`全部函件类别`?``:`&selecthjlb=${s}`}${c?`&txtZqdm=${c}`:``}`,d=await i({method:`get`,url:u}),f=d.data[o],p=f.data.map(t=>(t.ck=t.ck.match(/encode-open='\/(.*)'>详细内容/)[1],t.hfck=t.hfck.replace(/encode-open='\//,`encode-open='http://reportdocs.static.szse.cn/`),{title:`[${t.gsdm}] ${t.gsjc} (${t.hjlb})`,link:`http://reportdocs.static.szse.cn/${t.ck}`,pubDate:r(t.fhrq),description:n(a.join(e,`templates/inquire-8d9e64e8.art`),{item:t})}));return{title:`深圳证券交易所 - 问询函件 - ${f.metadata.name}`,link:`${l}/disclosure/supervision/inquire/index.html`,item:p,description:`函件类别：${s}${c?`; 公司代码或简称：${c}`:``}`}}export{o as route};
+//# sourceMappingURL=inquire-BmLJteFJ.js.map

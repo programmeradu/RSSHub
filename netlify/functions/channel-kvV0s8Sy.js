@@ -1,0 +1,12 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./cache-kimkMTWJ.js";import"./render-CxhTJIsl.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./not-found-CRS5K6wf.js";import{invalid_parameter_default as e}from"./invalid-parameter-CUJdROXf.js";import{callApi as t,getDataByChannelId as n,utils_default as r}from"./utils-Dj6x2BMn.js";import{getDataByChannelId as i}from"./youtubei-DDyxgDfV.js";const a={path:`/channel/:id/:routeParams?`,categories:[`social-media`],example:`/youtube/channel/UCDwDMPOZfxVV0x_dz0eQ8KQ`,parameters:{id:`YouTube channel id`,routeParams:`Extra parameters, see the table below`},radar:[{source:[`www.youtube.com/channel/:id`],target:`/channel/:id`}],name:`Channel with id`,maintainers:[`DIYgod`,`pseudoyu`],handler:o,description:`:::tip Parameter
+| Name       | Description                                                                         | Default |
+| ---------- | ----------------------------------------------------------------------------------- | ------- |
+| embed      | Whether to embed the video, fill in any value to disable embedding                  | embed   |
+| filterShorts | Whether to filter out shorts from the feed, fill in any falsy value to show shorts | true    |
+:::
+
+::: tip
+YouTube provides official RSS feeds for channels, for instance [https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ](https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ).
+:::`,features:{requireConfig:[{name:`YOUTUBE_KEY`,description:" YouTube API Key, support multiple keys, split them with `,`, [API Key application](https://console.developers.google.com/)",optional:!0}],requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1}};async function o(a){let o=a.req.param(`id`),s=a.req.param(`routeParams`),c=new URLSearchParams(s),l=!c.get(`embed`),u=c.get(`filterShorts`),d=u===null||u===``||u===`true`;if(!r.isYouTubeChannelId(o))throw new e(`Invalid YouTube channel ID. 
+You may want to use <code>/youtube/user/:id</code> instead.`);let f=await t({googleApi:n,youtubeiApi:i,params:{channelId:o,embed:l,filterShorts:d}});return f}export{a as route};
+//# sourceMappingURL=channel-kvV0s8Sy.js.map

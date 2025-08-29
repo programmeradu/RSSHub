@@ -1,0 +1,2 @@
+function e(e){let t=e(`.category-list li`).toArray().map(t=>{t=e(t);let n=t.find(`h2`).text(),r=t.find(`a`).attr(`href`),i=t.find(`p`).text(),a=t.find(`picture img`).attr(`src`);return{title:n,link:r,description:`<img src="${a}" alt="${n}">`,author:i}});return t}export{e as getItems};
+//# sourceMappingURL=items-processor-D6q6XvDf.js.map

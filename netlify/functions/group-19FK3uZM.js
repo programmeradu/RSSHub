@@ -1,0 +1,8 @@
+import"./esm-shims-Dqvxr0BZ.js";import{config as e}from"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import"./got-CdvI2yKX.js";import{config_not_found_default as t}from"./config-not-found-BVqhRP9D.js";import{customFetch as n,generateTopicDataItem as r}from"./utils-BNlKla-0.js";const i={name:`星球`,categories:[`social-media`],path:`/group/:id/:scope?`,example:`/zsxq/group/88855458825252`,parameters:{id:`星球id，从网页端url中获取`,scope:`栏目分类，默认为"all"，见下表`},maintainers:[`KarasuShin`],radar:[{source:[`wx.zsxq.com/dweb2/index/group/:id`]}],features:{requireConfig:[{name:`ZSXQ_ACCESS_TOKEN`,description:`知识星球访问令牌,获取方式：
+1. 登录知识星球网页版
+2. 打开浏览器开发者工具，切换到 Application 面板
+3. 点击侧边栏中的Storage -> Cookies -> https://wx.zsxq.com
+4. 复制 Cookie 中的 zsxq_access_token 值`}]},handler:a,description:`| all  | digests | by_owner | questions | tasks |
+| ---- | ------ | --------- | -------- | ------ |
+| 最新 | 精华    | 只看星主    | 问答      | 作业   |`};async function a(i){let a=i.req.param(`id`),o=i.req.param(`scope`)??`all`,s=e.zsxq.accessToken;if(!s)throw new t(`该 RSS 源由于配置不正确而被禁用：令牌丢失。`);let c=Number(i.req.query(`limit`))||20;c>30&&(c=30);let{group:l}=await n(`/groups/${a}`),{topics:u}=await n(`/groups/${a}/topics?scope=${o}&count=${c}`);return{title:`知识星球 - ${l.name}`,description:l.description,image:l.background_url,link:`https://wx.zsxq.com/dweb2/index/group/${a}`,item:r(u)}}export{i as route};
+//# sourceMappingURL=group-19FK3uZM.js.map

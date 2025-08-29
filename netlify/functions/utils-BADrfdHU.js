@@ -1,0 +1,2 @@
+import{__dirname as e,init_esm_shims as t}from"./esm-shims-Dqvxr0BZ.js";import{art as n}from"./render-CxhTJIsl.js";import r from"node:path";t();const i=e=>e.props.pageProps.data.summary+e.props.pageProps.data.memo,a=t=>n(r.join(e,`templates/work-5126c210.art`),{data:t.props.pageProps.data});export{i as extractArticle,a as extractWork};
+//# sourceMappingURL=utils-BADrfdHU.js.map

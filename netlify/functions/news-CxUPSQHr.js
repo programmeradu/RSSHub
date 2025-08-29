@@ -1,0 +1,10 @@
+import"./esm-shims-Dqvxr0BZ.js";import"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import{cache_default as e}from"./cache-kimkMTWJ.js";import{parseDate as t}from"./parse-date-Bgabdhlb.js";import{ofetch_default as n}from"./ofetch-Bzt0BXUH.js";import{load as r}from"cheerio";const i={path:`/:type`,categories:[`new-media`],example:`/kelownacapnews/local-news`,parameters:{type:`Type of news`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`www.kelownacapnews.com/:type`],target:`/:type`}],name:`News`,maintainers:[`hualiong`],url:`www.kelownacapnews.com`,description:`\`type\` is as follows:
+  
+| News type     | Value         | News type    | Value        |
+| ------------- | ------------- | ------------ | ------------ |
+| News          | news          | Sports       | sports       |
+| Local News    | local-news    | Business     | business     |
+| Canadian News | national-news | Trending Now | trending-now |
+| World News    | world-news    | Opinion      | opinion      |
+| Entertainment | entertainment |              |              |`,handler:async i=>{let a=i.req.param(`type`),o=`https://www.kelownacapnews.com`,s=await n(`${o}/${a}`),c=r(s),l=c(`.media`).toArray().map(e=>{let n=c(e);return{title:n.find(`.media-heading`).text(),pubDate:t(n.find(`.media-links time`).attr(`datetime`)),link:o+n.attr(`href`)}}),u=await Promise.all(l.map(t=>e.tryGet(t.link,async()=>{let e=await n(t.link),i=r(e),a=i(`.details-file`);a.length||(a=i(`#sliderImgs .tablist-item .galleryWrap`));let o=i(`.details-byline`),s=o.find(`.profile-title`);s.length&&(t.author=s.find(`a`).text());let c=``;if(a.length>1)for(let e of a.toArray()){let t=i(e);c+=`<figure style="margin: 10px 0 0 0"><img src='${t.data(`src`)}' /><figcaption>${t.attr(`title`)}</figcaption></figure>`}else c=`<figure style="margin: 0">${a.html()}</figure>`;return t.description=c+i(`.details-body`).html(),t})));return{title:`${c(`.body-title`).text()} - Kelowna Capital News`,link:`${o}/${a}`,item:u}}};export{i as route};
+//# sourceMappingURL=news-CxUPSQHr.js.map

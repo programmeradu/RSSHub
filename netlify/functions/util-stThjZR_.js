@@ -1,0 +1,2 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";const t=`趣集`,n=`zh-CN`,r=`https://n.ifun.cool`,i=(t,i)=>t.slice(0,i).map(t=>{let i=t.title,a=t.content,o=`ifun-n-${t.id}`,s=t.author;return{title:i,description:a,pubDate:e(t.createtime),link:t.id?new URL(`articles/${t.id}`,r).href:void 0,category:[...new Set([t.category,t.tag].filter(Boolean))],author:s,guid:o,id:o,content:{html:a,text:a},language:n}});export{t as author,n as language,i as processItems,r as rootUrl};
+//# sourceMappingURL=util-stThjZR_.js.map

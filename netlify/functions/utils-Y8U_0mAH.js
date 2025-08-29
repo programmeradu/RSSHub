@@ -1,0 +1,5 @@
+import{parseDate as e}from"./parse-date-Bgabdhlb.js";import{got_default as t}from"./got-CdvI2yKX.js";import{timezone as n}from"./timezone-BrNu6iXe.js";import{load as r}from"cheerio";const i=async i=>{let a=await t.get(i),o=r(a.data),s=n(e(o(`time`).attr(`datetime`)),8);o(`.image-container, .image-container-fill`).removeAttr(`style`),o(`.video-package`).each((e,t)=>{let n=o(t),r=n.find(`.video-description`).html(),i=n.attr(`data-video-url`);n.html(`
+            <p>${r}</p>
+            <iframe frameborder="0" src="${i}" allowFullScreen="true"></iframe>
+        `)});let c=o(`article`).html();return{description:c,pubDate:s}},a=(e,t)=>Promise.all(e.map(e=>{let n=r(e),a=n(`.title`),o=new URL(a.attr(`href`),`https://www.jianshu.com`).toString();return t.tryGet(o,async()=>{let e=await i(o);return{title:a.text(),link:o,author:n(`.nickname`).text(),...e}})}));var o={ProcessFeed:a};export{o as utils_default};
+//# sourceMappingURL=utils-Y8U_0mAH.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"wait-baJzjFxf.js","names":[],"sources":["../../lib/utils/wait.ts"],"sourcesContent":["function wait(ms: number) {\r\n    return new Promise((resolve) => {\r\n        setTimeout(resolve, ms);\r\n    });\r\n}\r\n\r\nexport default wait;\r\n"],"mappings":"AAAA,SAAS,EAAK,EAAY,CACtB,OAAO,IAAI,QAAS,GAAY,CAC5B,WAAW,EAAS,KAI5B,IAAA,EAAe"}

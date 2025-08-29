@@ -1,0 +1,21 @@
+import"./esm-shims-Dqvxr0BZ.js";import{config as e}from"./config-Dl8a1sIg.js";import"./logger-CWOoofbD.js";import"./dist-IvUHtNe1.js";import"./helpers-DzX-lcQO.js";import{cache_default as t}from"./cache-kimkMTWJ.js";import"./parse-date-Bgabdhlb.js";import"./ofetch-Bzt0BXUH.js";import{got_default as n}from"./got-CdvI2yKX.js";import{config_not_found_default as r}from"./config-not-found-BVqhRP9D.js";import{getToken as i,maskHeader as a,pixiv_got_default as o,utils_default as s}from"./utils-VPsgV-F2.js";import{getNSFWNovelContent as c,getSFWNovelContent as l}from"./sfw-CnsnTdKL.js";import{load as u}from"cheerio";import d from"query-string";const f=`https://www.pixiv.net`;async function p(e,t,n){let r=await o(`https://app-api.pixiv.net/v2/novel/series`,{headers:{...a,Authorization:`Bearer `+n},searchParams:d.stringify({series_id:e,last_order:t})});return r.data}async function m(n,l=10){if(l>30&&(l=30),!e.pixiv||!e.pixiv.refreshToken)throw new r(`This user is an R18 creator, PIXIV_REFRESHTOKEN is required.
+pixiv RSS is disabled due to the lack of relevant config.
+該用戶爲 R18 創作者，需要 PIXIV_REFRESHTOKEN。`);let u=await i(t.tryGet);if(!u)throw new r(`pixiv not login`);let d=await o(`${f}/ajax/novel/series/${n}`,{headers:{...a,Authorization:`Bearer `+u}}),m=d.data,h=m.body.total-l;h<0&&(h=0);let g=await p(n,h,u),_=await Promise.all(g.novels.map(async e=>{let t=await c(e.id,u);return{title:e.title,description:`
+                    <img src="${s.getProxiedImageUrl(t.coverUrl)}" />
+                    <div>
+                    <p>${t.description}</p>
+                    <hr>
+                    ${t.content}
+                    </div>
+                `,link:`${f}/novel/show.php?id=${e.id}`,pubDate:e.create_date,author:e.user.name,category:t.tags}}));return{title:g.novel_series_detail.title,description:g.novel_series_detail.caption,link:`${f}/novel/series/${n}`,image:s.getProxiedImageUrl(m.body.cover.urls.original),item:_}}const h=`https://www.pixiv.net`;async function g(e,t=10){let r=await n(`${h}/novel/series/${e}`),i=u(r.data),a=i(`meta[property="og:title"]`).attr(`content`)||``,o=i(`meta[property="og:description"]`).attr(`content`)||``,c=i(`meta[property="og:image"]`).attr(`content`)||``,d=await n(`${h}/ajax/novel/series/${e}/content_titles`,{headers:{referer:`${h}/novel/series/${e}`}}),f=d.data;if(f.error)throw Error(f.message||`Failed to get series data`);let p=f.body.slice(-Math.abs(t)),m=Math.max(f.body.length-t+1,1),g=await Promise.all(p.map(async(e,t)=>{if(!e.available)return{title:`#${m+t} ${e.title}`,description:`PIXIV_REFRESHTOKEN is required to view the full content.<br>需要 PIXIV_REFRESHTOKEN 才能查看完整內文。`,link:`${h}/novel/show.php?id=${e.id}`};let n=await l(e.id);return{title:`#${m+t} ${n.title}`,description:`
+                    <img src="${s.getProxiedImageUrl(n.coverUrl)}" />
+                    <div>
+                    <p>${n.description}</p>
+                    <hr>
+                    ${n.content}
+                    </div>
+                `,link:`${h}/novel/show.php?id=${n.id}`,pubDate:n.createDate,author:n.userName||`User ID: ${n.userId}`,category:n.tags}}).toReversed());return{title:a,description:o,image:s.getProxiedImageUrl(c),link:`${h}/novel/series/${e}`,item:g}}const _={path:`/novel/series/:id`,categories:[`social-media`],example:`/pixiv/novel/series/11586857`,parameters:{id:`Series id, can be found in URL`},features:{requireConfig:[{name:`PIXIV_REFRESHTOKEN`,optional:!0,description:`
+refresh_token after Pixiv login, required for accessing R18 novels
+Pixiv 登錄後的 refresh_token，用於獲取 R18 小說
+[https://docs.rsshub.app/deploy/config#pixiv](https://docs.rsshub.app/deploy/config#pixiv)`}],requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`Novel Series`,maintainers:[`SnowAgar25`,`keocheung`],handler:y,radar:[{source:[`www.pixiv.net/novel/series/:id`],target:`/novel/series/:id`}]},v=()=>!!(e.pixiv&&e.pixiv.refreshToken);async function y(e){let t=e.req.param(`id`),{limit:n}=e.req.query();return v()?await m(t,n):await g(t,n)}export{_ as route};
+//# sourceMappingURL=novel-series-6Y-N-k9t.js.map
